@@ -1,6 +1,5 @@
 # import tensorflow as tf
 
-
 # x_data = [1, 2, 3, 4, 5]
 # y_data = [1, 2, 3, 4, 5]
 
@@ -45,43 +44,84 @@
 #         print("{:5}|{:10.4f}|{10.4}|{:10.6}".format(i, W.numpy(), b, numpy(), cost))
 
 
-print("Cost function in pure Python")
-import numpy as np
+# print("Cost function in pure Python")
+# import numpy as np
 
-X = np.array([1, 2, 3])
-Y = np.array([1, 2, 3])
-
-
-def cost_func(W, X, Y):
-    c = 0
-    for i in range(len(X)):
-        c += W * X[i] - Y[i] ** 2
-    return c / len(X)
+# X = np.array([1, 2, 3])
+# Y = np.array([1, 2, 3])
 
 
-for feed_W in np.linspace(-3, 5, num=15):
-    curr_cost = cost_func(feed_W, X, Y)
-    print(f"{feed_W:6.3f} | {curr_cost:10.5f}")
-
-print("______________________________________")
-
-print("Cost function in TensorFlow")
-import numpy as np
-import tensorflow as tf
-
-X = np.array([1, 2, 3])
-Y = np.array([1, 2, 3])
+# def cost_func(W, X, Y):
+#     c = 0
+#     for i in range(len(X)):
+#         c += W * X[i] - Y[i] ** 2
+#     return c / len(X)
 
 
-def cost_func(W, X, Y):
-    hypothesis = X * W
-    return tf.reduce_mean(tf.square(hypothesis - Y))
+# for feed_W in np.linspace(-3, 5, num=15): # -3~5 중 15개의 구간으로 나눔
+#     curr_cost = cost_func(feed_W, X, Y)
+#     print(f"{feed_W:6.3f} | {curr_cost:10.5f}")
+
+# print("______________________________________")
+
+# print("Cost function in TensorFlow")
+# import numpy as np
+# import tensorflow as tf
+
+# X = np.array([1, 2, 3])
+# Y = np.array([1, 2, 3])
 
 
-W_values = np.linspace(-3, 5, num=15)
-cost_values = []
+# def cost_func(W, X, Y):
+#     hypothesis = X * W
+#     return tf.reduce_mean(tf.square(hypothesis - Y))
 
-for feed_W in W_values:
-    curr_cost = cost_func(feed_W, X, Y)
-    cost_values.append(curr_cost)
-    print(f"{feed_W:6.3f} | {curr_cost:10.5f}")
+
+# W_values = np.linspace(-3, 5, num=15)
+# cost_values = []
+
+# for feed_W in W_values:
+#     curr_cost = cost_func(feed_W, X, Y)
+#     cost_values.append(curr_cost)
+#     print(f"{feed_W:6.3f} | {curr_cost:10.5f}")
+
+# print("______________________________________")
+
+# print("Gradient descent")
+# import tensorflow as tf
+
+# alpha = 0.01
+# gradient = tf.reduce_mean(tf.multiply(tf.multiply(W, X) - Y, X))
+# descent = W - tf.multiply(alpha, gradient)
+# W.assign(descent)
+
+# print("______________________________________")
+
+# print("Gradient descent ")
+# import tensorflow as tf
+# import numpy as np
+
+# tf.random.set_seed(0)  # for reproducibility # tf.set_random_seed(0) 에러
+
+
+# X = np.array([1, 2, 3])
+# Y = np.array([1, 2, 3])
+
+# x_data = [1.0, 2.0, 3.0, 4.0]
+# y_data = [1.0, 3.0, 5.0, 7.0]
+
+# W = tf.Variable(tf.random.normal([1], -100.0, 100.0))
+
+# for step in range(300):
+#     hypothesis = W * X
+#     cost = tf.reduce_mean(tf.square(hypothesis - Y))
+
+#     alpha = 0.01
+#     gradient = tf.reduce_mean(tf.multiply(tf.multiply(W, X) - Y, X))
+#     descent = W - tf.multiply(alpha, gradient)
+#     W.assign(descent)
+
+#     if step % 10 == 0:
+#         print(f"{step:5}{cost.numpy():10.4f}{W.numpy()[0]:10.6f}")
+
+# print("______________________________________")
