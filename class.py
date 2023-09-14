@@ -910,6 +910,92 @@
 # li = [i * i for i in range(1, 6)]
 # print(li)
 # li = [i for i in range(1, 21) if i % 3 == 0]
-# print(li)
-myData = [[n * m for n in range(1, 3)] for m in range(2, 4)][[2, 4], [3, 6]]
-print(myData)
+# # print(li)
+# myData = [[n * m for n in range(1, 3)] for m in range(2, 4)][[2, 4], [3, 6]]
+# print(myData)
+
+
+# foods = ["떡볶이", "마라탕", "라면", "피자", "치킨"]
+# sides = ["오뎅", "꿔바로우", "김치"]
+# print(zip(foods, sides))
+# print(list(zip(foods, sides)))
+# print(dict(zip(foods, sides)))
+
+# for i, j in zip(foods, sides):
+#     print(i, "-->", j)
+
+
+# num = input("주민번호 입력(중간에 '-'기호 사용) : ")
+# gen = num[7]
+# if gen == "3" or gen == "1":
+#     print("남자입니다.")
+# elif gen == "2" or gen == "4":
+#     print("여자입니다.")
+# else:
+#     print("error")
+
+
+# sen = input("문자열 입력 : ")
+# for i in range(len(sen)):
+#     if i % 2 == 0:
+#         print(sen[i], end="")
+#     else:
+#         print("#", end="")
+
+
+# re_str = ""
+# str = input("문자열을 입력하세요 : ")
+# for i in range(len(str)):
+#     re_str = str[::-1]  # re_str += str[len(str) - (i + 1)]
+# print(re_str)
+# # 동연이 코드
+# # re_str = ""
+# # str = input("문자열을 입력하세요 : ")
+# # for i in str[::-1]:
+# #     re_str += i
+# # print(re_str)
+
+
+# s1 = "python is EZ"
+# print(s1.upper())
+# print(s1.lower())
+# print(s1.swapcase())
+# print(s1.title())
+# s1 = "파이썬 공부 화이팅! 4반 화이팅!"
+# print(s1.count("화이팅"))
+# print(s1.find("공부"), s1.find("화이팅"), s1.find("자바"))
+# print(s1.rfind("공부"), s1.rfind("화이팅"), s1.rfind("자바"))  # 오른쪽부터
+# print(s1.index("공부"), s1.index("화이팅"))  # s1.index("자바")) # 없는 것을 찾을때 오류
+# print(s1.rindex("공부"), s1.rindex("화이팅"))
+# print(s1.startswith("파이썬"), s1.endswith("자바"))
+# print(s1.startswith("자바"), s1.endswith("화이팅!"))
+
+
+str = "aacdAABbE"
+str = str.lower()
+print(str)
+most = 0
+for i in range(0 + 97, 26 + 97):
+    cnt = str.count(chr(i))
+    if most == cnt:
+        pre = "?"
+    elif most < cnt:
+        pre = chr(i)
+        most = cnt
+print(pre)
+
+# str = "abcdAAdbBE"
+# li = []
+# cnt = 0
+# str = str.lower()
+# for i in range(26):
+#     li.append(0)
+# for j in range(26):
+#     cnt = str.count(chr(j + 97))
+#     li[j] = cnt
+#     cnt = 0
+# if li.count(max(li)) > 1:
+#     print("?")
+# else:
+#     i = li.index(max(li))
+#     print(chr(i + 97))
