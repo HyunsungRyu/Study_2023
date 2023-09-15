@@ -1038,23 +1038,76 @@
 # print("=".join(s1))
 
 
-data = """
-kim 950101-1234567
-lee 970202-2345678
-park 930515-1357890
-"""
-info = data.splitlines()
-info.pop(0)
-name_list = []
-jumpin_list = []
-for i in range(len(info)):
-    name_list.append(info[i].split()[0])
-    jumpin_list.append(info[i].split()[1])
-    jumpin_list[i] = jumpin_list[i][0:8] + "*" * 6
-print(name_list)
-print(jumpin_list)
+# data = """
+# kim 950101-1234567
+# lee 970202-2345678
+# park 930515-1357890
+# """
+# info = data.splitlines()
+# info.pop(0)
+# name_list = []
+# jumpin_list = []
+# for i in range(len(info)):
+#     name_list.append(info[i].split()[0])
+#     jumpin_list.append(info[i].split()[1])
+#     jumpin_list[i] = jumpin_list[i][0:8] + "*" * 6
+# print(name_list)
+# print(jumpin_list)
+
 
 # c = "hi Korea"
 # a, b = c.split()
 # print(a)
 # print(b)
+
+
+# before = [1.1, 2.2, 3.3, 4.4, 5.5]
+# result = list(map(int, before))
+# print(result)
+
+# before = ["1", "2", "3"]
+# result = list(map(int, before))
+# print(result)
+
+# import math
+
+# before = [1.1, 2.2, 3.3, 4.4, 5.5]
+# result = list(map(math.ceil, before)) # math.ceil 올림
+
+
+# s1 = "파이썬"
+# print(s1.center(10))
+# print(s1.center(10, "-"))
+# print(s1.ljust(10))
+# print(s1.rjust(10))
+# print(s1.zfill(10))
+
+# print("1234".isdigit())  # 이 문자열이 숫자만으로 구성되어있나
+# print("1ㄱ".isdigit())  # 이 문자열이 숫자만으로 구성되어있나
+# print("1234a;sldkfj".isalpha())  # 이 문자열이 언어로만 되어있나
+# print("1234asdf".isalnum())  # 알파벳과 숫자 하나만 있어도 True
+# print("ABSC".isupper())  # 대문자
+# print("asedf".islower())  # 소문자
+# print("ads fasdf".isspace())  # 공백만 있어야 True
+
+
+data = """
+내가 그의 이름을 불러주기 전에는 그는 다만 하나의 몸짓에 지나지 않았다.
+내가 그의 이름을 불러주었을 떄, 그는 내게로 와 꽃이 되었다.
+"""
+import operator
+
+countDic = {}
+countList = []
+for i in data:
+    if "ㄱ" <= i and i <= "힣":
+        if i not in countDic:
+            countDic[i] = 1
+        else:
+            countDic[i] += 1
+    else:
+        continue
+countList = sorted(countDic.items(), key=operator.itemgetter(1), reverse=True)
+for i in range(5):
+    print(str(i + 1) + "위 ", end="")
+    print(countList[i][0], countList[i][1])
