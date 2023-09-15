@@ -971,18 +971,18 @@
 # print(s1.startswith("자바"), s1.endswith("화이팅!"))
 
 
-str = "aacdAABbE"
-str = str.lower()
-print(str)
-most = 0
-for i in range(0 + 97, 26 + 97):
-    cnt = str.count(chr(i))
-    if most == cnt:
-        pre = "?"
-    elif most < cnt:
-        pre = chr(i)
-        most = cnt
-print(pre)
+# str = "aacdAABbE"
+# str = str.lower()
+# print(str)
+# most = 0
+# for i in range(0 + 97, 26 + 97):
+#     cnt = str.count(chr(i))
+#     if most == cnt:
+#         pre = "?"
+#     elif most < cnt:
+#         pre = chr(i)
+#         most = cnt
+# print(pre)
 # 동연이 코드
 # str = "abcdAAdbBE"
 # li = []
@@ -999,3 +999,62 @@ print(pre)
 # else:
 #     i = li.index(max(li))
 #     print(chr(i + 97))
+
+
+# s1 = "   파  이 썬"
+# s2 = "---파--이-썬 ---"
+# print(s1.strip())
+# print(s1.lstrip() + "A")
+# print(s1.rstrip() + "A")
+# print(s2.replace("-", "+"))
+
+
+# str = " 한글 Python 프로그래밍 "
+# outstr = ""
+# for i in range(len(str)):
+#     if str[i] != " ":
+#         outstr += str[i]
+
+# print("원래 문자열: " + str)
+# print("공백 삭제 문자열 : " + outstr)
+
+
+# str = " 한글 Python 프로그래밍 "
+# outstr = ""
+# for i in range(len(str)):
+#     if str[i] != " ":
+#         outstr += str[i]
+#     else:
+#         outstr += "$"
+
+# print("원래 문자열: " + str)
+# print("공백 삭제 문자열 : " + outstr)
+
+
+# s1 = "파이썬.. 공부중..\n"
+# print(s1.split())
+# print(s1.split("."))
+# print(s1.splitlines())
+# print("=".join(s1))
+
+
+data = """
+kim 950101-1234567
+lee 970202-2345678
+park 930515-1357890
+"""
+info = data.splitlines()
+info.pop(0)
+name_list = []
+jumpin_list = []
+for i in range(len(info)):
+    name_list.append(info[i].split()[0])
+    jumpin_list.append(info[i].split()[1])
+    jumpin_list[i] = jumpin_list[i][0:8] + "*" * 6
+print(name_list)
+print(jumpin_list)
+
+# c = "hi Korea"
+# a, b = c.split()
+# print(a)
+# print(b)
