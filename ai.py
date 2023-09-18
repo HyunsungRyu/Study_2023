@@ -334,6 +334,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
+x_train = [[1.0, 2.0], [2.0, 3.0], [3.0, 1.0], [4.0, 3.0], [5.0, 3.0], [6.0, 2.0]]
+y_train = [[0.0], [0.0], [0.0], [1.0], [1.0], [1.0]]
+
+x_test = [[5.0, 2.0]]
+y_test = [[1.0]]
+
+x1 = [x[0] for x in x_train]  # 1, 2, 3, ...
+x2 = [x[1] for x in x_train]  # 2, 3, 1 ...
+
+colors = [int(y[0] % 3) for y in y_train]
+plt.scatter(x1, x2, c=colors, marker="^")
+plt.scatter(x_test[0][0], x_test[0][1], c="red")
+
+plt.xlabel("x1")
+plt.xlabel("x2")
+plt.show()
+
 dataset = tf.data.Dataset.from_tensor_slices((x_train, y_train))
 
 W = tf.Variable(tf.zeros([2, 1]), name="Weight")
@@ -345,7 +362,7 @@ def logistic_regression(features):
     return hypothesis
 
 
-def loss_tn(hypothesis, labels):
+def loss_fn(hypothesis, labels):
     cost = -tf.reduce_mean(labels * tf.math.log(1 - hypothesis))
     return cost
 
@@ -368,7 +385,7 @@ def grad(features, labels):
 
 EPOCHS = 1001
 for step in range(EPOCHS):
-    for features, lables in iter(dataset.batch(len(x_train))):
+    for features, labels in iter(dataset.batch(len(x_train))):
         hypothesis = logistic_regression(features)
         grads = grad(features, labels)
         optimizer.apply_gradients(grads_and_vars=zip(grads, [W, b]))
