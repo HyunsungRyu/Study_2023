@@ -305,17 +305,17 @@
 
 # print("Logistic regression")
 
-import numpy as np
-import matplotlib.pyplot as plt
-import tensorflow as tf
+# import numpy as np
+# import matplotlib.pyplot as plt
+# import tensorflow as tf
 
-x_train = [[1.0, 2.0], [2.0, 3.0], [3.0, 1.0], [4.0, 3.0], [5.0, 3.0], [6.0, 2.0]]
-y_train = [[0.0], [0.0], [0.0], [1.0], [1.0], [1.0]]
+# x_train = [[1.0, 2.0], [2.0, 3.0], [3.0, 1.0], [4.0, 3.0], [5.0, 3.0], [6.0, 2.0]]
+# y_train = [[0.0], [0.0], [0.0], [1.0], [1.0], [1.0]]
 
-x_test = [[5.0, 2.0]]
-y_test = [[1.0]]
+# x_test = [[5.0, 2.0]]
+# y_test = [[1.0]]
 
-x1 = [x[0] for x in x_train]  # 1, 2, 3, ...
-x2 = [x[1] for x in x_train]  # 2, 3, 1 ...
+# x1 = [x[0] for x in x_train]  # 1, 2, 3, ...
+# x2 = [x[1] for x in x_train]  # 2, 3, 1 ...
 
-plt.scatter(x1, x2, c=colors)
+# plt.scatter(x1, x2, c=colors)

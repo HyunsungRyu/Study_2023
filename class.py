@@ -1091,23 +1091,30 @@
 # print("ads fasdf".isspace())  # 공백만 있어야 True
 
 
-data = """
-내가 그의 이름을 불러주기 전에는 그는 다만 하나의 몸짓에 지나지 않았다.
-내가 그의 이름을 불러주었을 떄, 그는 내게로 와 꽃이 되었다.
-"""
-import operator
+# data = """
+# 내가 그의 이름을 불러주기 전에는 그는 다만 하나의 몸짓에 지나지 않았다.
+# 내가 그의 이름을 불러주었을 떄, 그는 내게로 와 꽃이 되었다.
+# """
+# import operator
 
-countDic = {}
-countList = []
-for i in data:
-    if "ㄱ" <= i and i <= "힣":
-        if i not in countDic:
-            countDic[i] = 1
-        else:
-            countDic[i] += 1
-    else:
-        continue
-countList = sorted(countDic.items(), key=operator.itemgetter(1), reverse=True)
-for i in range(5):
-    print(str(i + 1) + "위 ", end="")
-    print(countList[i][0], countList[i][1])
+# countDic = {}
+# countList = []
+# for i in data:
+#     if "ㄱ" <= i and i <= "힣":
+#         if i not in countDic:
+#             countDic[i] = 1
+#         else:
+#             countDic[i] += 1
+#     else:
+#         continue
+# countList = sorted(countDic.items(), key=operator.itemgetter(1), reverse=True)
+# for i in range(5):
+#     print(str(i + 1) + "위 ", end="")
+#     print(countList[i][0], countList[i][1])
+
+
+li = [i for i in range(1, 6)]
+print(li)
+
+my = [[n * m for n in range(1, 3)] for m in range(2, 4)]
+print(my)
