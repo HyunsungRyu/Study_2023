@@ -328,70 +328,160 @@
 
 # print("______________________________________")
 
-print("Logistic regression")
+# print("Logistic regression")
 
-import numpy as np
-import matplotlib.pyplot as plt
+# import numpy as np
+# import matplotlib.pyplot as plt
+# import tensorflow as tf
+
+# x_train = [[1.0, 2.0], [2.0, 3.0], [3.0, 1.0], [4.0, 3.0], [5.0, 3.0], [6.0, 2.0]]
+# y_train = [[0.0], [0.0], [0.0], [1.0], [1.0], [1.0]]
+
+# x_test = [[5.0, 2.0]]
+# y_test = [[1.0]]
+
+# x1 = [x[0] for x in x_train]  # 1, 2, 3, ...
+# x2 = [x[1] for x in x_train]  # 2, 3, 1 ...
+
+# colors = [int(y[0] % 3) for y in y_train]
+# plt.scatter(x1, x2, c=colors, marker="^")
+# plt.scatter(x_test[0][0], x_test[0][1], c="red")
+
+# plt.xlabel("x1")
+# plt.xlabel("x2")
+# plt.show()
+
+# dataset = tf.data.Dataset.from_tensor_slices((x_train, y_train))
+
+# W = tf.Variable(tf.zeros([2, 1]), name="Weight")
+# b = tf.Variable(tf.zeros([1]), name="bias")
+
+
+# def logistic_regression(features):
+#     hypothesis = tf.divide(1.0, 1.0 + tf.exp(-tf.matmul(features, W) + b))
+#     return hypothesis
+
+
+# def loss_fn(hypothesis, labels):
+#     cost = -tf.reduce_mean(labels * tf.math.log(1 - hypothesis))
+#     return cost
+
+
+# optimizer = tf.keras.optimizers.SGD(learning_rate=0.01)
+
+
+# def accuracy_fn(hypothesis, labels):
+#     predicted = tf.cast(hypothesis > 0.5, dtype=tf.float32)
+#     accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, labels), dtype=tf.int32))
+#     return accuracy
+
+
+# def grad(features, labels):
+#     with tf.GradientTape() as tape:
+#         hypothesis = logistic_regression(features)
+#         loss_value = loss_fn(hypothesis, labels)
+#     return tape.gradient(loss_value, [W, b])
+
+
+# EPOCHS = 1001
+# for step in range(EPOCHS):
+#     for features, labels in iter(dataset.batch(len(x_train))):
+#         hypothesis = logistic_regression(features)
+#         grads = grad(features, labels)
+#         optimizer.apply_gradients(grads_and_vars=zip(grads, [W, b]))
+#         if step % 100 == 0:
+#             print(f"Iter:{step}, Loss: {loss_fn(hypothesis, labels):.4f}")
+
+# test_acc = accuracy_fn(logistic_regression(x_test), y_test)
+# print(f"Test Result = {tf.cast(logistic_regression(x_test) > 0.5, dtype=tf.int32)}")
+# print(f"Testset Accuracy: {test_acc:.4f}")
+
+# print("______________________________________")
+
+# print("Sample Dataset")
+
+# import numpy as np
+
+# x_data = [
+#     [1, 2, 1, 1],
+#     [2, 1, 3, 2],
+#     [3, 1, 3, 4],
+#     [4, 1, 5, 5],
+#     [1, 7, 5, 5],
+#     [1, 2, 5, 6],
+#     [1, 6, 6, 6],
+#     [1, 7, 7, 7],
+# ]
+# y_data = [
+#     [0, 0, 1],
+#     [0, 0, 1],
+#     [0, 0, 1],
+#     [0, 1, 0],
+#     [0, 1, 0],
+#     [0, 1, 0],
+#     [1, 0, 0],
+#     [1, 0, 0],
+# ]
+# # cnvert into numpy and float format
+# x_data = np.asarray(x_data, dtype=np.float32)
+# y_data = np.asarray(y_data, dtype=np.float32)
+
+# nb_classes = 3  # num classes
+
+# print("______________________________________")
+
+# print("Softmax function")
+
+# import tensorflow as tf
+
+# hypothesis = tf.nn.softmax(tf.matmul(X,W)+b)
+
+# tf.matmul(X,W)+b
+
+# print("______________________________________")
+
+# print("Softmax function")
+
+# import tensorflow as tf
+# import numpy as np
+
+
+# W = tfe.Variable(tf.random.normal([4, nb_classes]), name="weight")
+# b = tfe.Variable(tf.random.normal([nb_classes]), name="bias")
+# variables = [W, b]
+
+# print("______________________________________")
+
+# print("Softmax function")
+
 import tensorflow as tf
+import numpy as np
 
-x_train = [[1.0, 2.0], [2.0, 3.0], [3.0, 1.0], [4.0, 3.0], [5.0, 3.0], [6.0, 2.0]]
-y_train = [[0.0], [0.0], [0.0], [1.0], [1.0], [1.0]]
+# Sample Dataset
+x_data = [
+    [1, 2, 1, 1],
+    [2, 1, 3, 2],
+    [3, 1, 3, 4],
+    [4, 1, 5, 5],
+    [1, 7, 5, 5],
+    [1, 2, 5, 6],
+    [1, 6, 6, 6],
+    [1, 7, 7, 7],
+]
+y_data = [
+    [0, 0, 1],
+    [0, 0, 1],
+    [0, 0, 1],
+    [0, 1, 0],
+    [0, 1, 0],
+    [0, 1, 0],
+    [1, 0, 0],
+    [1, 0, 0],
+]
 
-x_test = [[5.0, 2.0]]
-y_test = [[1.0]]
+# convert into numpy and float format
+x_data = np.asarray(x_data, dtype=np.float32)
+y_data = np.asarray(y_data, dtype=np.float32)
 
-x1 = [x[0] for x in x_train]  # 1, 2, 3, ...
-x2 = [x[1] for x in x_train]  # 2, 3, 1 ...
-
-colors = [int(y[0] % 3) for y in y_train]
-plt.scatter(x1, x2, c=colors, marker="^")
-plt.scatter(x_test[0][0], x_test[0][1], c="red")
-
-plt.xlabel("x1")
-plt.xlabel("x2")
-plt.show()
-
-dataset = tf.data.Dataset.from_tensor_slices((x_train, y_train))
-
-W = tf.Variable(tf.zeros([2, 1]), name="Weight")
-b = tf.Variable(tf.zeros([1]), name="bias")
-
-
-def logistic_regression(features):
-    hypothesis = tf.divide(1.0, 1.0 + tf.exp(-tf.matmul(features, W) + b))
-    return hypothesis
-
-
-def loss_fn(hypothesis, labels):
-    cost = -tf.reduce_mean(labels * tf.math.log(1 - hypothesis))
-    return cost
-
-
-optimizer = tf.keras.optimizers.SGD(learning_rate=0.01)
-
-
-def accuracy_fn(hypothesis, labels):
-    predicted = tf.cast(hypothesis > 0.5, dtype=tf.float32)
-    accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, labels), dtype=tf.int32))
-    return accuracy
-
-
-def grad(features, labels):
-    with tf.GradientTape() as tape:
-        hypothesis = logistic_regression(features)
-        loss_value = loss_fn(hypothesis, labels)
-    return tape.gradient(loss_value, [W, b])
-
-
-EPOCHS = 1001
-for step in range(EPOCHS):
-    for features, labels in iter(dataset.batch(len(x_train))):
-        hypothesis = logistic_regression(features)
-        grads = grad(features, labels)
-        optimizer.apply_gradients(grads_and_vars=zip(grads, [W, b]))
-        if step % 100 == 0:
-            print(f"Iter:{step}, Loss: {loss_fn(hypothesis, labels):.4f}")
-
-test_acc = accuracy_fn(logistic_regression(x_test), y_test)
-print(f"Test Result = {tf.cast(logistic_regression(x_test) > 0.5, dtype=tf.int32)}")
-print(f"Testset Accuracy: {test_acc:.4f}")
+# mum classes
+nb_classes = 3

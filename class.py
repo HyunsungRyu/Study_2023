@@ -1128,89 +1128,110 @@
 # time.sleep(10)
 
 
-import turtle as t
-import random
-import time
+# import turtle as t
+# import random
+# import time
 
 
-def right():
-    if player.xcor() < 200:
-        player.setx(player.xcor() + 20)
+# def right():
+#     if player.xcor() < 200:
+#         player.setx(player.xcor() + 20)
 
 
-def left():
-    if player.xcor() > -200:
-        player.setx(player.xcor() - 20)
+# def left():
+#     if player.xcor() > -200:
+#         player.setx(player.xcor() - 20)
 
 
-# 화면 설정
-t.bgcolor("lightpink")
-t.setup(500, 700)
+# # 화면 설정
+# t.bgcolor("lightpink")
+# t.setup(500, 700)
 
-# player 설정
-player = t.Turtle()
-player.shape("square")
-player.shapesize(1, 3)  # 막대의 길이를 조정
-player.penup()
-player.speed(0)
-player.goto(0, -270)
+# # player 설정
+# player = t.Turtle()
+# player.shape("square")
+# player.shapesize(1, 3)  # 막대의 길이를 조정
+# player.penup()
+# player.speed(0)
+# player.goto(0, -270)
 
-# ball 설정
-ball = t.Turtle()
-ball.shape("circle")
-ball.shapesize(1.1)
-ball.penup()
-ball.speed(0)
-ball.color("white")
-ball.goto(0, 0)
+# # ball 설정
+# ball = t.Turtle()
+# ball.shape("circle")
+# ball.shapesize(1.1)
+# ball.penup()
+# ball.speed(0)
+# ball.color("white")
+# ball.goto(0, 0)
 
-# 키 이벤트 처리
-t.listen()
-t.onkeypress(right, "Right")
-t.onkeypress(left, "Left")
+# # 키 이벤트 처리
+# t.listen()
+# t.onkeypress(right, "Right")
+# t.onkeypress(left, "Left")
 
-# 공 속도 설정
-ball_xspeed = 5
-ball_yspeed = 5
+# # 공 속도 설정
+# ball_xspeed = 5
+# ball_yspeed = 5
 
-# 게임 상태 및 라이프 설정
-game_on = True
-life = 3
+# # 게임 상태 및 라이프 설정
+# game_on = True
+# life = 3
 
-# 라이프 표시
-life_display = t.Turtle()
-life_display.penup()
-life_display.hideturtle()
-life_display.goto(0, 300)
-life_display.write(f"Life: {life}", align="center", font=("Arial", 20, "normal"))
+# # 라이프 표시
+# life_display = t.Turtle()
+# life_display.penup()
+# life_display.hideturtle()
+# life_display.goto(0, 300)
+# life_display.write(f"Life: {life}", align="center", font=("Arial", 20, "normal"))
 
-while game_on:
-    new_x = ball.xcor() + ball_xspeed
-    new_y = ball.ycor() + ball_yspeed
-    ball.goto(new_x, new_y)
+# while game_on:
+#     new_x = ball.xcor() + ball_xspeed
+#     new_y = ball.ycor() + ball_yspeed
+#     ball.goto(new_x, new_y)
 
-    if ball.xcor() > 240 or ball.xcor() < -240:
-        ball_xspeed *= -1
+#     if ball.xcor() > 240 or ball.xcor() < -240:
+#         ball_xspeed *= -1
 
-    if ball.ycor() > 340:
-        ball_yspeed *= -1
+#     if ball.ycor() > 340:
+#         ball_yspeed *= -1
 
-    if ball.ycor() < -340:
-        life -= 1
-        life_display.clear()
-        life_display.write(
-            f"Life: {life}", align="center", font=("Arial", 20, "normal")
-        )
-        ball.goto(0, 0)
-        ball_xspeed = random.choice([-5, 5])
-        ball_yspeed = 5
+#     if ball.ycor() < -340:
+#         life -= 1
+#         life_display.clear()
+#         life_display.write(
+#             f"Life: {life}", align="center", font=("Arial", 20, "normal")
+#         )
+#         ball.goto(0, 0)
+#         ball_xspeed = random.choice([-5, 5])
+#         ball_yspeed = 5
 
-    if player.distance(ball) < 50 and -260 < ball.ycor() < -245:
-        ball_yspeed *= -1
+#     if player.distance(ball) < 50 and -260 < ball.ycor() < -245:
+#         ball_yspeed *= -1
 
-    if life == 0:
-        game_on = False
-        t.goto(0, 0)
-        t.write("Game Over", align="center", font=("Arial", 30, "normal"))
+#     if life == 0:
+#         game_on = False
+#         t.goto(0, 0)
+#         t.write("Game Over", align="center", font=("Arial", 30, "normal"))
 
-t.exitonclick()
+# t.exitonclick()
+
+
+# li = [[10, 20, 30], [1, 2, 3], [100, 200]]
+
+# for i in range(len(li)):
+#     for j in li[i]:
+#         print(j, end=" ")
+#     print()
+# score = [1, 2, 3]
+# score.insert(1, 3)
+# print(score)
+# li = [[n * m for n in range(1, 3)] for m in range(1, 5)]
+# print(li)
+order = ["라면", "라면", "소떡", "김치", "라면", "감자", "라면", "감자"]
+count_order = {}
+for i in order:
+    if i in count_order:
+        count_order[i] += 1
+    else:
+        count_order[i] = 1
+print(count_order)
