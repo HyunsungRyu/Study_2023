@@ -485,3 +485,5 @@ y_data = np.asarray(y_data, dtype=np.float32)
 
 # mum classes
 nb_classes = 3
+
+# hypothesis = tf.nn.softmax(tf.matmul(X,W)+b)
