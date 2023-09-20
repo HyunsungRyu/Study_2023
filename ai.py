@@ -487,3 +487,6 @@ y_data = np.asarray(y_data, dtype=np.float32)
 nb_classes = 3
 
 # hypothesis = tf.nn.softmax(tf.matmul(X,W)+b)
+
+# Weight and bias setting
+W = tf.Variable(tf.random.normal([]))
