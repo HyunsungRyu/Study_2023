@@ -1226,12 +1226,194 @@
 # score.insert(1, 3)
 # print(score)
 # li = [[n * m for n in range(1, 3)] for m in range(1, 5)]
+# # print(li)
+# order = ["라면", "라면", "소떡", "김치", "라면", "감자", "라면", "감자"]
+# count_order = {}
+# for i in order:
+#     if i in count_order:
+#         count_order[i] += 1
+#     else:
+#         count_order[i] = 1
+# print(count_order)
+
+
+# def open_account(name):
+#     print("-" * 30)
+#     print(f"{name}님, 새로운 계좌를 개설합니다.\n")
+
+# open_account("Ryu")
+# open_account("Hyun")
+
+
+# def desposit(re, mo):
+#     print(f"{mo}원을 입금했습니다. 잔액은 {re+mo}원입니다.")
+#     return re + mo
+
+# def withdraw(re, mo):
+#     if re >= mo:
+#         print(f"{mo}원을 출금했습니다. 남은 돈은 {re-mo}원입니다.")
+#         return re - mo
+#     else:
+#         print(f"잔액이 부족합니다. 잔액은 {re}원입니다.'")
+#         return re
+
+# balance = 0
+# balance = desposit(balance, 1000)
+# balance = withdraw(balance, 500)
+# balance = withdraw(balance, 2000)
+
+
+# def add_sub(a, b):
+#     return a + b, a - b, a * b
+
+# x, y, z = add_sub(10, 20)
+# print(x, y, z)
+
+# # add_sub의 결과를 변수 한 개에 저장할 경우 튜플이 변환
+# a_tu = add_sub(10, 20)
+# print(a_tu)
+
+
+# def func(a, b):
+#     li = []
+#     li.append(a + b)
+#     li.append(a - b)
+#     li.append(a * b)
+#     return li
+
+# print(func(10, 20))
+# li2 = func(10, 20)
+# print(li2)
+
+# def profile(name, age, main_lang):
+#     print(f"이름 : {name}, 나이 : {age}, 사용언어 : {main_lang}")
+
+# profile("Ryu", 17, "Python")
+# profile("Lucy", 17, "Pythoin")
+
+
+# def profile(name, age=17, main_lang="python"):
+#     print(f"이름 : {name}, 나이 : {age}, 사용언어 : {main_lang}")
+
+
+# profile("Ryu")
+# profile("Lucy")
+# profile("Hyun", 30, "Java")
+# profile("Sung", main_lang="Java")
+
+
+# # turple
+# def sum(*x_turple):
+#     result = 0
+#     for i in x_turple:
+#         result += i
+#     return result
+
+
+# hap = sum(10, 20)
+# print(hap)
+
+# hap = sum(1, 2, 3, 4, 5)
+# print(hap)
+
+
+# # # dict
+# def func(**dict):
+#     for i in dict.keys():
+#         print(f"{i} ---> {dict[i]}")
+
+
+# # 함수 호출자, 키 = 값 형식으로 저장
+# func(트와이스=9, 블랙핑크=4, 르세라핌=5)
+
+
+# def func():
+#     global a # 전역변수
+#     a = 10
+#     print(a)
+
+
+# def func2():
+#     print(a)
+
+
+# a = 20
+# func()
+# func2()
+
+
+# def func():
+#     global a # 이제 func()
+
+
+# def get_max_score(*tu):
+#     return max(tu)
+
+
+# kor, eng, math = 100, 86, 81
+# max_score = get_max_score(kor, eng, math)
+# print("높은 점수:", max_score)
+
+# max_score = get_max_score(88, 56, 77, 90)
+# print("높은 점수:", max_score)
+
+
+# from Class.Module import *
+
+# func1()
+# func2()
+# func3()
+
+
+# def outFunc(v1, v2):
+#     # 내부함수 inFunc() 선언
+#     # outFunc() 안에서만 함수 호출 가능
+#     def inFunc(num1, num2):
+#         return num1 + num2
+
+#     return inFunc(v1, v2)
+
+# print(outFunc(10, 20))
+# # print(inFunc(10, 20)) # 오류 발생
+
+
+# def hap(n1, n2):
+#     return n1 + n2
+
+
+# hap2 = lambda n1, n2: n1 + n2
+
+# # 기본값 설정 가능
+# hap3 = lambda n1=10, n2=20: n1 + n2
+# print(hap(10, 20))
+# print(hap2(10, 20))
+# print(hap3())
+# print(hap3(100, 200))
+
+
+# # 기존 함수
+# li = [1,2,3,4,5]
+# def add10(num):
+#     return num+10
+
+# for i in range(len(li)):
+#     li[i] = add10(li[i])
+
 # print(li)
-order = ["라면", "라면", "소떡", "김치", "라면", "감자", "라면", "감자"]
-count_order = {}
-for i in order:
-    if i in count_order:
-        count_order[i] += 1
+
+# # 람다 함수,map() 사용
+# li = [1, 2, 3, 4, 5]
+# add10 = lambda num: num + 10
+# li = list(map(add10, li))
+# print(li)
+
+
+def f(num):
+    if num == 1:
+        return 1
     else:
-        count_order[i] = 1
-print(count_order)
+        return num * f(num - 1)
+
+
+print(f(5))
+print(f(10))
