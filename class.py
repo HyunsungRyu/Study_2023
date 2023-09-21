@@ -1408,12 +1408,27 @@
 # print(li)
 
 
-def f(num):
-    if num == 1:
+# def f(num):
+#     if num == 1:
+#         return 1
+#     else:
+#         return num * f(num - 1)
+
+
+# print(f(5))
+# print(f(10))
+
+
+def GCD(a, b):
+    n = a % b
+    if n == 1:
         return 1
+    if n == 0:
+        return b
     else:
-        return num * f(num - 1)
+        GCD(b, n)
 
 
-print(f(5))
-print(f(10))
+print(GCD(16, 4))
+print(GCD(21, 5))
+print(GCD(25, 5))
