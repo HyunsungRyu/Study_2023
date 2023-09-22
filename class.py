@@ -1419,11 +1419,12 @@
 # print(f(10))
 
 
+"""
 def GCD(a, b):
     n = a % b
     if n == 1:
         return 1
-    if n == 0:
+    elif n == 0:
         return b
     else:
         GCD(b, n)
@@ -1432,3 +1433,4 @@ def GCD(a, b):
 print(GCD(16, 4))
 print(GCD(21, 5))
 print(GCD(25, 5))
+"""
