@@ -1153,11 +1153,71 @@ knr.score(train_input, train_target)
 knr.score(test_input, test_target)
 
 # 이웃 개수 줄이기
-knr.n_neighbors = 6
+# 과대적합 = ↓ 이웃의 개수 ↑ = 과소적합
+knr.n_neighbors = 3
 knr.fit(train_input, train_target)
 
 print(knr.score(train_input, train_target))
 
 print(knr.score(test_input, test_target))
 
-# 과대적합 ↓ 이웃의 개수 ↑ 과소적합
+# R^2(score()) = 1 - (타깃-예측)^2의 합 / (타깃 - 평균)^2의 합
+
+# print("혼자 공부하는 머신러닝+딥러닝 7강")
+
+# 아주 큰 농어
+print(knr.predict([[50]]))
+
+# 50cm의 농어의 이웃
+
+# 50cm의 농어의 이웃을 구합니다.
+dictances, indexes = knr.kneighbors([[50]])
+
+# 훈련 세트의 산섬도를 그립니다.
+plt.scatter(train_input, train_target)
+# 훈련 세트 중에서 이웃 샘플만 다시 그립니다.
+plt.scatter(train_input[indexes], train_target[indexes], marker="D")
+# 50cm 농어 데이터
+plt.scatter(50, 1033, marker="^")
+plt.show()
+
+# 선형 회귀(linear regression)
+from sklearn.linear_model import LinearRegression
+
+lr = LinearRegression()
+# 선형 회귀 모델 훈련
+lr.fit(train_input, train_target)
+
+# 50cm 농어에 대한 예측
+print(lr.predict([[50]]))
+
+print(lr.coef_, lr.intercept_)
+
+# 학습한 직선 그리기
+
+# 훈련 세트의 산점도를 그립니다.
+plt.scatter(train_input, train_target)
+
+# 15에서 50까지 1차 방적식 그래프를 그립니다.
+plt.plot([15, 50], [15 * lr.coef_ + lr.intercept_, 50 * lr.coef_ + lr.intercept_])
+
+# 50cm 농어 데이터
+plt.scatter(50, 1241.8, marker="^")
+plt.show()
+
+print(lr.score(train_input, train_target))
+
+print(lr.score(test_input, test_target))
+
+# 다항 회귀
+
+train_poly = np.column_stack((train_input**2, train_input))
+test_poly = np.column_stack((test_input**2, test_input))
+
+# 모델 다시 훈련
+lr = LinearRegression()
+lr.fit(train_poly, train_target)
+
+print(lr.predict([[50**2, 50]]))
+
+print(lr.coef_, lr.intercept_)
