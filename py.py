@@ -1,4 +1,4 @@
-'''
+"""
 print("hello world")
 print(5)
 print(-10)
@@ -7,17 +7,17 @@ print(True)
 print(False)
 print(not True)
 print(not (3-10))
-''''''
+""" """
 animal = "고양이"
 name = "고앵이"
 age = 5
 hobby = "낮잠"
 print("우리집 "+animal+"의 이름은 "+name+"예요")
 print(name+"는 "+str(age)+"살이며, "+hobby+"을 아주 좋아해요")
-''''''
+""" """
 station = "사당"
 print(station+"행 열차가 들어오고 있습니다.")
-''''''
+""" """
 print(1+1)
 print(3-2)
 print(5*2)
@@ -42,7 +42,7 @@ print((3>0) | (3<5))
 
 print(3<4<5)
 print(5>3>7)
-''''''
+""" """
 print(2+3*4)
 print((3+2)*3)
 num = 2 + 3* 4
@@ -53,7 +53,7 @@ num+=2
 print(num)
 num %=3
 print(num)
-''''''
+""" """
 print(abs(-5)) # 절댓값
 print(pow(4, 2)) # 4의 2승
 print(max(5,12)) # 최댓값
@@ -64,16 +64,16 @@ from math import *
 print(floor(4.99)) # 내림
 print(ceil(3.14)) # 올림
 print(sqrt(16)) # 제곱근
-''''''
+""" """
 from random import *
 print(random()) # 0.0 ~ 1.0 미만의 임의의 값 생성 
 print(random()*10) # 0.0 ~ 10.0미만의 임의의 값 생성
 print(int(random()*10)) # 0 ~ 10 미만의 임의의 값 생성
-''''''
+""" """
 from random import *
 date = randint(4,28)
 print("오프라인 스터디 모임 날짜는 매월"+str(date)+"일로 선정되었습니다.")
-''''''
+""" '''
 sentence1 = "나는 소년입니다."
 print(sentence1)
 sentence2 = "파이선은 어려워요"
@@ -83,7 +83,7 @@ sentence3 = """
 파이션은 쉬워요
 """
 print(sentence3)
-''''''
+''' """
 jumin = "990120-1234567"
 print("성별 : "+ jumin[7])
 print("연 : " + jumin[0:2]) # 0부터 2직전까지(0~1)
@@ -92,7 +92,7 @@ print("일 : " + jumin[4:6])
 print("생년월일 : "+ jumin[:6]) # 처음부터 6직전까지
 print("뒤 7자리 : " + jumin[7:]) # 7부터 끝까지
 print("뒤 7자리 (뒤에서부터) : " + jumin[-7:])# 맨 뒤에서 7번째부터 끝까지
-''''''
+""" """
 python = "Python is Amazing"
 print(python.lower()) # python is amazing
 print(python.upper()) # PYTHON IS AMAZING
@@ -110,7 +110,7 @@ print(python.find("Java")) # -1
 print("hi") # hi
 print(python.count("n")) # 2
 print(python.count("Java")) # 0
-''''''
+""" """
 print("나는 %d살입니다." % 20)
 print("나는 %s을 좋아합니다." %"파이선")
 print("Apple은 %c로 시작해요" %"A")
@@ -126,7 +126,7 @@ print("나는 {age}살이며, {color}색을 좋아해요.".format(age = 20, colo
 age = 20
 color = "빨간"
 print(f"나는 {age}살이며, {color}색을 좋아해요")
-''''''
+""" """
 print("백문이 불여일견\n백견이 불여일타")
 
 #저는 "류현성"입니다.
@@ -142,7 +142,7 @@ print("Redd\bApple")
 
 # \t : 탭
 print("Red\t Apple")
-''''''
+""" """
 # Quiz) 사이트별로 비밀번호를 만들어 주는 프로그램을 작성하시오
 
 # 예) http://naver.com
@@ -158,7 +158,7 @@ my_str = my_str[:my_str.index(".")] #my_str[0:5] -> 0 ~ 5 직전까지.(0.1.2.3.
 print(my_str)
 password = my_str[:3] + str(len(my_str)) + str(my_str.count("e")) + "!"
 print(f"{url}의 비밀번호는 {password}입니다.")
-''''''
+""" """
 # 리스트 []
 subway = [10, 20, 30]
 print(subway)
@@ -192,7 +192,7 @@ print(num_list)
 
 num_list.clear()
 print(num_list)
-''''''
+""" """
 cabinet = {3 : "류", 100 : "현"}
 print(cabinet[3]) # 류
 print(cabinet[100]) # 현
@@ -233,7 +233,7 @@ print(cabinet.items())
 # 캐비넷 없애기
 cabinet.clear()
 print(cabinet)
-''''''
+""" """
 menu = ("pork", "cheese")
 print(menu[0]) # pork
 print(menu[1]) # cheese
@@ -247,7 +247,7 @@ print(name, age, hobby)
 
 name, age, hobby = "R", 2, "c"
 print(name, age, hobby)
-''''''
+""" """
 # 집합 (set)
 # 중복 안됨, 순서 없음
 my_set = {1,2,3,3,3,4}
@@ -276,7 +276,7 @@ print(python)
 print(java)
 java.remove("U")
 print(java)
-''''''
+""" """
 # 자료구조의 변경
 # 커피숍
 menu = {"커피", "우유", "주스"}
@@ -290,7 +290,7 @@ print(menu, type(menu))
 
 menu = set(menu)
 print(menu, type(menu))
-''''''
+""" """
 # Quiz) 추첨을 통해 1명은 치킨, 3명은 커피 쿠폰을 받게 됩니다.
 
 # 조건1 : 20명이 작성하였고 아이디는 1~20이라고 가정
@@ -326,7 +326,7 @@ print("-- 당첨자 발표 -- ")
 print("치킨 당첨자 : [%d]" %(winners[0]))
 print("커피 당첨자 : {0}".format(winners[1:]))
 print("-- 축하합니다 --")
-''''''
+""" """
 # weather = input("오늘 날씨는? ex)rain or dust\n")
 # if weather == "rain" or weather == "snow":
 #     print("우산을 챙기세요")
@@ -342,7 +342,7 @@ elif 0<= temp and temp < 10:
     print("외투를 챙기세요")
 else:
     print("너무 추워요. 나가지 마세요")
-''''''
+""" """
 # print("대기번호 : 1")
 # print("대기번호 : 2")
 # print("대기번호 : 3")
@@ -356,7 +356,7 @@ else:
 starbucks = ["R", "Y", "U"]
 for customer in starbucks:
     print("{0}, 커피가 준비되었습니다.".format(customer))
-''''''
+""" """
 # customer = "R"
 # index = 
 # while index >= 1:
@@ -371,7 +371,7 @@ person = "Unknown"
 while person != customer :
     print("{0}, 커피가 준비되었습니다.".format(customer))
     person = input("이름이 어떻게 되세요?")
-''''''
+""" """
 absent = [2, 5] # 결석
 no_book = [7] # 책을 깜빡함
 for student in range(1,11): # 1,2,3,4,5,6,7,8,9,10
@@ -381,7 +381,7 @@ for student in range(1,11): # 1,2,3,4,5,6,7,8,9,10
         print("오늘 수업 여기까지. {0}는 교무실로 따라와".format(student))
         break
     print("{0}, 책을 읽어봐".format(student))
-''''''
+""" """
 # 출석번호가 1 2 3 4 앞에 100을 붙이기로 함 101, 102, 103, 104
 # students = [1,2,3,4,5]
 # print(students)
@@ -397,7 +397,7 @@ print(students)
 students = ["ryu", "ry", "Ru"]
 students = [i.upper() for i in students]
 print(students)
-''''''
+""" """
 # Quiz) 당신은 cocoa 서비스를 이용하는 택시 기사님입니다.
 # 50명의 승객과 매칭 기회가 있을 때, 총 탑승 승객 수를 구하는 프로그램을 작성하지오.
 
@@ -423,7 +423,7 @@ for i in range(1, 51): # 1 ~ 50 이라는 수 (승객)
     else:
         print("[ ] {0}번째 손님 (소요시간 : {1}분)".format(i, time))
 print("총 탑승 승객 : {0} 분".format(cnt))
-''''''
+""" """
 def open_account():
     print("새로운 계좌가 생성되었습니다.")
 def deposit(balance, money):
@@ -445,7 +445,7 @@ balance = deposit(balance, 1000)
 balance = withdraw(balance, 500)
 commision, balance = withdraw_night(balance, 500)
 print("수수료는 {0}원이며, 잔액은 {1}원 입니다.".format(commission, balance))
-''''''
+""" """
 # def profile(name, age, main_lang):
 #     print("이름 : {0}\t나이 : {1}\t주 사용언어 : {2}"\
 #         .format(name, age, main_lang))
@@ -458,12 +458,12 @@ def profile(name, age = 17, main_lang = "파이선"):
         .format(name, age, main_lang))
 profile("R")
 profile("y")
-''''''
+""" """
 def profile(name, age, main_lang):
     print("이름 : {0}\t나이 : {1}\t주 사용언어 : {2}"\
         .format(name, age, main_lang))
 profile(main_lang = "자바", age = 25, name = "김태호")
-''''''
+""" """
 # def profile(name, age, lang1, lang2, lang3, lang4, lang5):
 #     print("이름 : {0}\t나이 : {1}\t".format(name, age), end = " ")
 #     print(lang1, lang2, lang3, lang4, lang5)
@@ -478,7 +478,7 @@ def profile(name, age, *lang):
     
 profile("유재석", 20, "P", "java", "c", "C++", "C#", "javascript")
 profile("김태호", 25, "kotlin", "switf")
-''''''
+""" """
 gun = 10
 
 def checkpoint(soldiers):
@@ -489,7 +489,7 @@ def checkpoint(soldiers):
 print("전체 총 : {0}".format(gun))
 checkpoint(2) # 2명이 경계 근무 나감
 print("남은 총 : {0}".format(gun))
-''''''
+""" """
 def std_weight(height, gender):
     if gender == "male":
         return height**2*22
@@ -500,15 +500,27 @@ height = 190
 gender = "남자"
 weight = std_weight(height/100, gender)
 print("키 {0}cm {1}의 표준 체중은 {2}kg입니다.".format(height, gender, weight))
-''''''
+""" """
 print("Python", "java", "javascript", sep=" ", end="\n")
 import sys
 print("Python", "Java", file=sys.stdout)
 print("Python", "Java", file=sys.stderr)
-'''
+"""
 
-a, b = input().split()
-print(a<b)
-a
+import time
 
+while True:
+    # 타이머 시작점
+    start = input("Enter를 누르면 타이머를 시작합니다.(Ctrl+c를 누르면 중지됩니다.)")
+    begin = time.time()
 
+    # 타이머 종료점
+    stop = input("Enter를 누르면 측정을 종료합니다.")
+    end = time.time()
+
+    # 시간차
+    result = end - begin
+
+    # 여기서 round는 파이썬에서 소수점 자리수 조절에 활용됩니다.
+    result = round(result, 3)
+    print("시작 후", result, "초의 시간이 흘렀습니다.")
