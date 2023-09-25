@@ -1162,6 +1162,7 @@ print(knr.score(train_input, train_target))
 print(knr.score(test_input, test_target))
 
 # R^2(score()) = 1 - (타깃-예측)^2의 합 / (타깃 - 평균)^2의 합
+# R^2 = 결정 계수
 
 # print("혼자 공부하는 머신러닝+딥러닝 7강")
 
@@ -1221,3 +1222,24 @@ lr.fit(train_poly, train_target)
 print(lr.predict([[50**2, 50]]))
 
 print(lr.coef_, lr.intercept_)
+
+# 학습한 직선 그리기
+
+# 구간별 직선을 그리기 위해 15에서 49까지 정수 배열을 만듭니다.
+point = np.arange(15, 50)
+
+# 훈련 세트의 산점도를 그립니다.
+plt.scatter(train_input, train_target)
+
+# 15에서 49까지 2차 방정식 그래프를 그립니다.
+plt.plot(point, 1.01 * point**2 - 21.6 * point + 116.05)
+
+# 50cm 농어 데이터
+plt.scatter([50], [1574], marker="^")
+plt.show()
+
+print(lr.score(train_poly, train_target))
+
+print(lr.score(test_poly, test_target))
+
+# print("혼자 공부하는 머신러닝+딥러닝 8강")
