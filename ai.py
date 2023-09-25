@@ -646,7 +646,7 @@ kn49 = KNeighborsClassifier(n_neighbors=45)
 kn49.fit(fish_data, fish_target)
 print(kn49.score(fish_data, fish_target))
 print(kn49.predict([[30, 600]]))  # array([1]) | 도미
-"""
+""" """
 # 혼자 공부하는 머신러닝+딥러닝 4강
 # 예시 데이터 리스트
 bream_length = [
@@ -777,6 +777,7 @@ print(input_arr)
 
 # 데이터 섞기
 index = np.arange(45)
+print(index)
 np.random.shuffle(index)
 print(index)
 
@@ -800,3 +801,363 @@ from sklearn.neighbors import KNeighborsClassifier
 kn = KNeighborsClassifier()  # 기본 타깃 5개
 kn = kn.fit(train_input, train_target)
 kn.score(test_input, test_target)
+""" """
+# print("혼자 공부하는 머신러닝+딥러닝 5강")
+from sklearn.neighbors import KNeighborsClassifier
+import matplotlib.pyplot as plt
+import numpy as np
+
+# print("예시 데이터 리스트")
+bream_length = [
+    25.4,
+    26.3,
+    26.5,
+    29.0,
+    29.0,
+    29.7,
+    30.0,
+    30.0,
+    30.7,
+    31.0,
+    31.0,
+    31.5,
+    32.0,
+    32.0,
+    33.0,
+    33.0,
+    33.5,
+    33.5,
+    34.0,
+    34.0,
+    34.5,
+    35.0,
+    35.0,
+    35.0,
+    36.0,
+    37.0,
+    38.5,
+    38.5,
+    38.5,
+    41.0,
+    41.0,
+]
+bream_weight = [
+    242.0,
+    290.0,
+    340.0,
+    363.0,
+    430.0,
+    450.0,
+    500.0,
+    390.0,
+    450.0,
+    500.0,
+    475.0,
+    500.0,
+    500.0,
+    340.0,
+    600.0,
+    600.0,
+    700.0,
+    700.0,
+    610.0,
+    650.0,
+    575.0,
+    685.0,
+    620.0,
+    680.0,
+    700.0,
+    725.0,
+    720.0,
+    714.0,
+    850.0,
+    1000.0,
+    920.0,
+]
+smelt_length = [
+    9.8,
+    10.5,
+    10.6,
+    11.0,
+    11.2,
+    11.3,
+    11.8,
+    11.8,
+    12.0,
+    12.2,
+    12.4,
+    13.0,
+    14.3,
+    15.0,
+]
+smelt_weight = [
+    6.7,
+    7.5,
+    7.0,
+    9.7,
+    9.8,
+    8.7,
+    10.0,
+    9.9,
+    9.8,
+    12.2,
+    13.4,
+    12.2,
+    19.7,
+    19.9,
+]
+
+# 산점도
+import matplotlib.pyplot as plt
+
+plt.scatter(bream_length, bream_weight)
+
+plt.scatter(smelt_length, smelt_weight)
+plt.xlabel("length")
+plt.ylabel("weight")
+plt.show()
+
+# x와 y 데이터 합치기
+length = bream_length + smelt_length
+weight = bream_weight + smelt_weight
+
+# 넘파이로 데이터 준비
+fish_data = np.column_stack((length, weight))
+fish_target = np.concatenate((np.ones(35), np.zeros(10)))
+
+# 사이킷런으로 데이터 나누기
+from sklearn.model_selection import train_test_split
+
+train_input, test_input, train_target, test_target = train_test_split(
+    fish_data, fish_target, stratify=fish_target, random_state=43
+)
+# 수상한 도미
+from sklearn.neighbors import KNeighborsClassifier
+
+kn = KNeighborsClassifier()
+kn.fit(train_input, train_target)
+kn.score(test_input, test_target)
+print(kn.predict([[25, 150]]))
+
+distances, indexes = kn.kneighbors([[25, 150]])
+
+plt.scatter(train_input[:, 0], train_input[:, 1])
+plt.scatter(25, 150, marker="^")
+plt.scatter(train_input[indexes, 0], train_input[indexes, 1], marker="D")
+plt.xlabel("length")
+plt.ylabel("weight")
+plt.show()
+
+# 기준을 맞춰라
+plt.scatter(train_input[:, 0], train_input[:, 1])
+plt.scatter(25, 150, marker="^")
+plt.scatter(train_input[indexes, 0], train_input[indexes, 1], marker="D")
+plt.xlim((0, 1000))
+plt.xlabel("length")
+plt.ylabel("weight")
+plt.show()
+
+# 표준 점수로 바꾸기
+mean = np.mean(train_input, axis=0)
+std = np.std(train_input, axis=0)
+print(mean, std)
+print(mean, std)
+
+train_scaled = (train_input - mean) / std
+
+# 수상한 도무 다시 표시하기
+new = ([25, 150] - mean) / std
+plt.scatter(train_scaled[:, 0], train_scaled[:, 1])
+plt.scatter(new[0], new[1], marker="^")
+plt.xlabel("length")
+plt.ylabel("weight")
+plt.show()
+
+# 전처리 데이터에서 모델 훈련
+kn.fit(train_scaled, train_target)
+test_scaled = (test_input - mean) / std
+kn.score(test_scaled, test_target)
+
+print(kn.predict([new]))
+
+distances, indexes = kn.kneighbors([new])
+
+plt.scatter(train_scaled[:, 0], train_scaled[:, 1])
+plt.scatter(new[0], new[1], marker="^")
+plt.scatter(train_scaled[indexes, 0], train_scaled[indexes, 1], marker="D")
+plt.xlabel("length")
+plt.ylabel("weight")
+plt.show()
+"""
+# print("혼자 공부하는 머신러닝+딥러닝 6강")
+
+# 농어의 무게를 예측하라
+
+import numpy as np
+
+perch_length = np.array(
+    [
+        8.4,
+        13.7,
+        15.0,
+        16.2,
+        17.4,
+        18.0,
+        18.7,
+        19.0,
+        19.6,
+        20.0,
+        21.0,
+        21.0,
+        21.0,
+        21.3,
+        22.0,
+        22.0,
+        22.0,
+        22.0,
+        22.0,
+        22.5,
+        22.5,
+        22.7,
+        23.0,
+        23.5,
+        24.0,
+        24.0,
+        24.6,
+        25.0,
+        25.6,
+        26.5,
+        27.3,
+        27.5,
+        27.5,
+        27.5,
+        28.0,
+        28.7,
+        30.0,
+        32.8,
+        34.5,
+        35.0,
+        36.5,
+        36.0,
+        37.0,
+        37.0,
+        39.0,
+        39.0,
+        39.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        42.0,
+        43.0,
+        43.0,
+        43.5,
+        44.0,
+    ]
+)
+perch_weight = np.array(
+    [
+        5.9,
+        32.0,
+        40.0,
+        51.5,
+        70.0,
+        100.0,
+        78.0,
+        80.0,
+        85.0,
+        85.0,
+        110.0,
+        115.0,
+        125.0,
+        130.0,
+        120.0,
+        120.0,
+        130.0,
+        135.0,
+        110.0,
+        130.0,
+        150.0,
+        145.0,
+        150.0,
+        170.0,
+        225.0,
+        145.0,
+        188.0,
+        180.0,
+        197.0,
+        218.0,
+        300.0,
+        260.0,
+        265.0,
+        250.0,
+        250.0,
+        300.0,
+        320.0,
+        514.0,
+        556.0,
+        840.0,
+        685.0,
+        700.0,
+        700.0,
+        690.0,
+        900.0,
+        650.0,
+        820.0,
+        850.0,
+        900.0,
+        1015.0,
+        820.0,
+        1100.0,
+        1000.0,
+        1100.0,
+        1000.0,
+        1000.0,
+    ]
+)
+# 농어의 길이만 사용
+import matplotlib.pyplot as plt
+
+plt.scatter(perch_length, perch_weight)
+plt.xlabel("length")
+plt.ylabel("weight")
+plt.show()
+
+# 훈련 세트 준비
+from sklearn.model_selection import train_test_split
+
+# 훈련 세트와 테스트 세트로 나누자.
+train_input, test_input, train_target, test_target = train_test_split(
+    perch_length, perch_weight, random_state=42
+)
+# 훈련 세트와 테스트 세트를 2차원 배열로 바꾸자.
+train_input = train_input.reshape(-1, 1)
+test_input = test_input.reshape(-1, 1)
+
+# 회귀 모델 훈련
+from sklearn.neighbors import KNeighborsRegressor
+
+knr = KNeighborsRegressor()
+knr.fit(train_input, train_target)
+
+knr.score(train_input, train_target)
+
+from sklearn.metrics import mean_absolute_error
+
+test_prediction = knr.predict(test_input)
+mae = mean_absolute_error(test_target, test_prediction)
+print(mae)
+
+# 과대적함과 과소적함
+knr.score(train_input, train_target)
+knr.score(test_input, test_target)
+
+# 이웃 개수 줄이기
+knr.n_neighbors = 6
+knr.fit(train_input, train_target)
+
+print(knr.score(train_input, train_target))
+
+print(knr.score(test_input, test_target))
+
+# 과대적합 ↓ 이웃의 개수 ↑ 과소적합
