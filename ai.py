@@ -1292,3 +1292,47 @@ lr.fit(train_poly, train_target)
 print(lr.score(train_poly, train_target))
 
 print(lr.score(test_poly, test_target))
+
+# 규제 전에 표준화
+from sklearn.preprocessing import StandardScaler
+
+ss = StandardScaler()
+ss.fit(train_poly)
+train_scaled = ss.transform(train_poly)
+test_scaled = ss.transfrom(test_poly)
+
+# 릿지 회귀
+from sklearn.linear_model import Ridge
+
+ridge = Ridge()
+ridge.fit(train_scaled, train_target)
+
+print(ridge.score(train_scaled, train_target))
+
+print(ridge.score(test_scaled, test_target))
+
+# 적절한 규제 강도 찾기
+train_score = []
+test_score = []
+alpha_list = [0.001, 0.01, 0.1, 1, 10, 100]
+for alpha in alpha_list:
+    # 릿지 모델을 만든다.
+    ridge = Ridge(alpha=alpha)
+    # 릿지 모델을 훈련한다.
+    ridge.fit(train_scaled, train_target)
+    # 훈련 점수와 테스트 점수를 저장한다.
+    train_score.append(ridge.score(train_scaled, train_target))
+    test_score.append(ridge.score(test_scaled, test_target))
+
+plt.plot(np.log10(alpha_list), train_score)
+plt.plot(np.log10(alpha_list), test_score)
+plt.xlabel("alpha")
+plt.ylabel("R^2")
+plt.show()
+
+ridge = Ridge(alpha=0.1)
+ridge.fit(train_scaled, train_target)
+
+print(ridge.score(train_scaled, train_target))
+
+print(ridge.score(test_scaled, test_target))
