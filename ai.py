@@ -988,7 +988,7 @@ plt.scatter(train_scaled[indexes, 0], train_scaled[indexes, 1], marker="D")
 plt.xlabel("length")
 plt.ylabel("weight")
 plt.show()
-"""
+""" """
 # print("혼자 공부하는 머신러닝+딥러닝 6강")
 
 # 농어의 무게를 예측하라
@@ -1241,5 +1241,14 @@ plt.show()
 print(lr.score(train_poly, train_target))
 
 print(lr.score(test_poly, test_target))
-
+"""
 # print("혼자 공부하는 머신러닝+딥러닝 8강")
+
+# 다중 회귀(multiple regression)
+# 판다스로 데이터 준비
+import pandas as pd
+
+df = pd.read_csv("http://bit.ly/perch_csv")
+perch_full = df.to_numpy()
+
+print(perch_full)
