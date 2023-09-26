@@ -988,7 +988,7 @@ plt.scatter(train_scaled[indexes, 0], train_scaled[indexes, 1], marker="D")
 plt.xlabel("length")
 plt.ylabel("weight")
 plt.show()
-""" """
+"""
 # print("혼자 공부하는 머신러닝+딥러닝 6강")
 
 # 농어의 무게를 예측하라
@@ -1241,7 +1241,7 @@ plt.show()
 print(lr.score(train_poly, train_target))
 
 print(lr.score(test_poly, test_target))
-"""
+
 # print("혼자 공부하는 머신러닝+딥러닝 8강")
 
 # 다중 회귀(multiple regression)
@@ -1252,3 +1252,43 @@ df = pd.read_csv("http://bit.ly/perch_csv")
 perch_full = df.to_numpy()
 
 print(perch_full)
+from sklearn.preprocessing import PolynomialFeatures
+
+# degree=2
+poly = PolynomialFeatures()
+poly.fit([[2, 3]])
+
+# 1(bias), 2, 3, 2**2, 2**3, 3**2
+print(poly.transform([[2, 3]]))
+
+# LinearRegression
+poly = PolynomialFeatures(include_bias=False)
+
+poly.fit(train_input)
+train_poly = poly.transform(train_input)
+
+print(train_poly.shape)
+poly.get_feature_names_out()
+test_poly = poly.transform(test_input)
+
+from sklearn.linear_model import LinearRegression
+
+lr = LinearRegression()
+lr.fit(train_poly, train_target)
+print(lr.score(train_poly, train_target))
+
+print(lr.score(test_poly, test_target))
+
+# 더 많은 특성 만들기
+poly = PolynomialFeatures(degree=5, include_bias=False)
+
+poly.fit(train_input)
+train_poly = poly.transform(train_input)
+train_poly = poly.transform(test_input)
+
+print(train_poly.shape)
+lr.fit(train_poly, train_target)
+
+print(lr.score(train_poly, train_target))
+
+print(lr.score(test_poly, test_target))
