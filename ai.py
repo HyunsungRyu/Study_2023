@@ -989,350 +989,392 @@ plt.xlabel("length")
 plt.ylabel("weight")
 plt.show()
 """
-# print("혼자 공부하는 머신러닝+딥러닝 6강")
+# # print("혼자 공부하는 머신러닝+딥러닝 6강")
 
-# 농어의 무게를 예측하라
+# # 농어의 무게를 예측하라
 
+# import numpy as np
+
+# perch_length = np.array(
+#     [
+#         8.4,
+#         13.7,
+#         15.0,
+#         16.2,
+#         17.4,
+#         18.0,
+#         18.7,
+#         19.0,
+#         19.6,
+#         20.0,
+#         21.0,
+#         21.0,
+#         21.0,
+#         21.3,
+#         22.0,
+#         22.0,
+#         22.0,
+#         22.0,
+#         22.0,
+#         22.5,
+#         22.5,
+#         22.7,
+#         23.0,
+#         23.5,
+#         24.0,
+#         24.0,
+#         24.6,
+#         25.0,
+#         25.6,
+#         26.5,
+#         27.3,
+#         27.5,
+#         27.5,
+#         27.5,
+#         28.0,
+#         28.7,
+#         30.0,
+#         32.8,
+#         34.5,
+#         35.0,
+#         36.5,
+#         36.0,
+#         37.0,
+#         37.0,
+#         39.0,
+#         39.0,
+#         39.0,
+#         40.0,
+#         40.0,
+#         40.0,
+#         40.0,
+#         42.0,
+#         43.0,
+#         43.0,
+#         43.5,
+#         44.0,
+#     ]
+# )
+# perch_weight = np.array(
+#     [
+#         5.9,
+#         32.0,
+#         40.0,
+#         51.5,
+#         70.0,
+#         100.0,
+#         78.0,
+#         80.0,
+#         85.0,
+#         85.0,
+#         110.0,
+#         115.0,
+#         125.0,
+#         130.0,
+#         120.0,
+#         120.0,
+#         130.0,
+#         135.0,
+#         110.0,
+#         130.0,
+#         150.0,
+#         145.0,
+#         150.0,
+#         170.0,
+#         225.0,
+#         145.0,
+#         188.0,
+#         180.0,
+#         197.0,
+#         218.0,
+#         300.0,
+#         260.0,
+#         265.0,
+#         250.0,
+#         250.0,
+#         300.0,
+#         320.0,
+#         514.0,
+#         556.0,
+#         840.0,
+#         685.0,
+#         700.0,
+#         700.0,
+#         690.0,
+#         900.0,
+#         650.0,
+#         820.0,
+#         850.0,
+#         900.0,
+#         1015.0,
+#         820.0,
+#         1100.0,
+#         1000.0,
+#         1100.0,
+#         1000.0,
+#         1000.0,
+#     ]
+# )
+# # 농어의 길이만 사용
+# import matplotlib.pyplot as plt
+
+# plt.scatter(perch_length, perch_weight)
+# plt.xlabel("length")
+# plt.ylabel("weight")
+# plt.show()
+
+# # 훈련 세트 준비
+# from sklearn.model_selection import train_test_split
+
+# # 훈련 세트와 테스트 세트로 나누자.
+# train_input, test_input, train_target, test_target = train_test_split(
+#     perch_length, perch_weight, random_state=42
+# )
+# # 훈련 세트와 테스트 세트를 2차원 배열로 바꾸자.
+# train_input = train_input.reshape(-1, 1)
+# test_input = test_input.reshape(-1, 1)
+
+# # 회귀 모델 훈련
+# from sklearn.neighbors import KNeighborsRegressor
+
+# knr = KNeighborsRegressor()
+# knr.fit(train_input, train_target)
+
+# knr.score(train_input, train_target)
+
+# from sklearn.metrics import mean_absolute_error
+
+# test_prediction = knr.predict(test_input)
+# mae = mean_absolute_error(test_target, test_prediction)
+# print(mae)
+
+# # 과대적함과 과소적함
+# knr.score(train_input, train_target)
+# knr.score(test_input, test_target)
+
+# # 이웃 개수 줄이기
+# # 과대적합 = ↓ 이웃의 개수 ↑ = 과소적합
+# knr.n_neighbors = 3
+# knr.fit(train_input, train_target)
+
+# print(knr.score(train_input, train_target))
+
+# print(knr.score(test_input, test_target))
+
+# # R^2(score()) = 1 - (타깃-예측)^2의 합 / (타깃 - 평균)^2의 합
+# # R^2 = 결정 계수
+
+# # print("혼자 공부하는 머신러닝+딥러닝 7강")
+
+# # 아주 큰 농어
+# print(knr.predict([[50]]))
+
+# # 50cm의 농어의 이웃
+
+# # 50cm의 농어의 이웃을 구합니다.
+# dictances, indexes = knr.kneighbors([[50]])
+
+# # 훈련 세트의 산섬도를 그립니다.
+# plt.scatter(train_input, train_target)
+# # 훈련 세트 중에서 이웃 샘플만 다시 그립니다.
+# plt.scatter(train_input[indexes], train_target[indexes], marker="D")
+# # 50cm 농어 데이터
+# plt.scatter(50, 1033, marker="^")
+# plt.show()
+
+# # 선형 회귀(linear regression)
+# from sklearn.linear_model import LinearRegression
+
+# lr = LinearRegression()
+# # 선형 회귀 모델 훈련
+# lr.fit(train_input, train_target)
+
+# # 50cm 농어에 대한 예측
+# print(lr.predict([[50]]))
+
+# print(lr.coef_, lr.intercept_)
+
+# # 학습한 직선 그리기
+
+# # 훈련 세트의 산점도를 그립니다.
+# plt.scatter(train_input, train_target)
+
+# # 15에서 50까지 1차 방적식 그래프를 그립니다.
+# plt.plot([15, 50], [15 * lr.coef_ + lr.intercept_, 50 * lr.coef_ + lr.intercept_])
+
+# # 50cm 농어 데이터
+# plt.scatter(50, 1241.8, marker="^")
+# plt.show()
+
+# print(lr.score(train_input, train_target))
+
+# print(lr.score(test_input, test_target))
+
+# # 다항 회귀
+
+# train_poly = np.column_stack((train_input**2, train_input))
+# test_poly = np.column_stack((test_input**2, test_input))
+
+# # 모델 다시 훈련
+# lr = LinearRegression()
+# lr.fit(train_poly, train_target)
+
+# print(lr.predict([[50**2, 50]]))
+
+# print(lr.coef_, lr.intercept_)
+
+# # 학습한 직선 그리기
+
+# # 구간별 직선을 그리기 위해 15에서 49까지 정수 배열을 만듭니다.
+# point = np.arange(15, 50)
+
+# # 훈련 세트의 산점도를 그립니다.
+# plt.scatter(train_input, train_target)
+
+# # 15에서 49까지 2차 방정식 그래프를 그립니다.
+# plt.plot(point, 1.01 * point**2 - 21.6 * point + 116.05)
+
+# # 50cm 농어 데이터
+# plt.scatter([50], [1574], marker="^")
+# plt.show()
+
+# print(lr.score(train_poly, train_target))
+
+# print(lr.score(test_poly, test_target))
+
+# # print("혼자 공부하는 머신러닝+딥러닝 8강")
+
+# # 다중 회귀(multiple regression)
+# # 판다스로 데이터 준비
+# import pandas as pd
+
+# df = pd.read_csv("http://bit.ly/perch_csv")
+# perch_full = df.to_numpy()
+
+# print(perch_full)
+# from sklearn.preprocessing import PolynomialFeatures
+
+# # degree=2
+# poly = PolynomialFeatures()
+# poly.fit([[2, 3]])
+
+# # 1(bias), 2, 3, 2**2, 2**3, 3**2
+# print(poly.transform([[2, 3]]))
+
+# # LinearRegression
+# poly = PolynomialFeatures(include_bias=False)
+
+# poly.fit(train_input)
+# train_poly = poly.transform(train_input)
+
+# print(train_poly.shape)
+# poly.get_feature_names_out()
+# test_poly = poly.transform(test_input)
+
+# from sklearn.linear_model import LinearRegression
+
+# lr = LinearRegression()
+# lr.fit(train_poly, train_target)
+# print(lr.score(train_poly, train_target))
+
+# print(lr.score(test_poly, test_target))
+
+# # 더 많은 특성 만들기
+# poly = PolynomialFeatures(degree=5, include_bias=False)
+
+# poly.fit(train_input)
+# train_poly = poly.transform(train_input)
+# train_poly = poly.transform(test_input)
+
+# print(train_poly.shape)
+# lr.fit(train_poly, train_target)
+
+# print(lr.score(train_poly, train_target))
+
+# print(lr.score(test_poly, test_target))
+
+# # 규제 전에 표준화
+# from sklearn.preprocessing import StandardScaler
+
+# ss = StandardScaler()
+# ss.fit(train_poly)
+# train_scaled = ss.transform(train_poly)
+# test_scaled = ss.transfrom(test_poly)
+
+# # 릿지 회귀
+# from sklearn.linear_model import Ridge
+
+# ridge = Ridge()
+# ridge.fit(train_scaled, train_target)
+
+# print(ridge.score(train_scaled, train_target))
+
+# print(ridge.score(test_scaled, test_target))
+
+# # 적절한 규제 강도 찾기
+# train_score = []
+# test_score = []
+# alpha_list = [0.001, 0.01, 0.1, 1, 10, 100]
+# for alpha in alpha_list:
+#     # 릿지 모델을 만든다.
+#     ridge = Ridge(alpha=alpha)
+#     # 릿지 모델을 훈련한다.
+#     ridge.fit(train_scaled, train_target)
+#     # 훈련 점수와 테스트 점수를 저장한다.
+#     train_score.append(ridge.score(train_scaled, train_target))
+#     test_score.append(ridge.score(test_scaled, test_target))
+
+# plt.plot(np.log10(alpha_list), train_score)
+# plt.plot(np.log10(alpha_list), test_score)
+# plt.xlabel("alpha")
+# plt.ylabel("R^2")
+# plt.show()
+
+# ridge = Ridge(alpha=0.1)
+# ridge.fit(train_scaled, train_target)
+
+# print(ridge.score(train_scaled, train_target))
+
+# print(ridge.score(test_scaled, test_target))
+
+# # 라쏘 회귀
+# from sklearn.linear_model import Lasso
+
+# lasso = Lasso()
+# lasso.fit(train_scaled, train_target)
+
+# print(lasso.score(train_scaled, train_target))
+
+# print(lasso.score(test_scaled, test_target))
+
+# lasso = Lasso(alpha=10)
+# lasso.fit(train_scaled, train_target)
+
+# print(lasso.score(train_scaled, train_target))
+
+# print(lasso.score(test_scaled, test_target))
+
+# print(np.sum(lasso.coef_ == 0))
+"""
+[혼자 공부하는 머신러닝+딥러닝] 9강.로지스틱 회귀 알아보기
+"""
+# 확률 계산하기
+# 길이 높이 대각선 두께
+import pandas as pd
 import numpy as np
 
-perch_length = np.array(
-    [
-        8.4,
-        13.7,
-        15.0,
-        16.2,
-        17.4,
-        18.0,
-        18.7,
-        19.0,
-        19.6,
-        20.0,
-        21.0,
-        21.0,
-        21.0,
-        21.3,
-        22.0,
-        22.0,
-        22.0,
-        22.0,
-        22.0,
-        22.5,
-        22.5,
-        22.7,
-        23.0,
-        23.5,
-        24.0,
-        24.0,
-        24.6,
-        25.0,
-        25.6,
-        26.5,
-        27.3,
-        27.5,
-        27.5,
-        27.5,
-        28.0,
-        28.7,
-        30.0,
-        32.8,
-        34.5,
-        35.0,
-        36.5,
-        36.0,
-        37.0,
-        37.0,
-        39.0,
-        39.0,
-        39.0,
-        40.0,
-        40.0,
-        40.0,
-        40.0,
-        42.0,
-        43.0,
-        43.0,
-        43.5,
-        44.0,
-    ]
-)
-perch_weight = np.array(
-    [
-        5.9,
-        32.0,
-        40.0,
-        51.5,
-        70.0,
-        100.0,
-        78.0,
-        80.0,
-        85.0,
-        85.0,
-        110.0,
-        115.0,
-        125.0,
-        130.0,
-        120.0,
-        120.0,
-        130.0,
-        135.0,
-        110.0,
-        130.0,
-        150.0,
-        145.0,
-        150.0,
-        170.0,
-        225.0,
-        145.0,
-        188.0,
-        180.0,
-        197.0,
-        218.0,
-        300.0,
-        260.0,
-        265.0,
-        250.0,
-        250.0,
-        300.0,
-        320.0,
-        514.0,
-        556.0,
-        840.0,
-        685.0,
-        700.0,
-        700.0,
-        690.0,
-        900.0,
-        650.0,
-        820.0,
-        850.0,
-        900.0,
-        1015.0,
-        820.0,
-        1100.0,
-        1000.0,
-        1100.0,
-        1000.0,
-        1000.0,
-    ]
-)
-# 농어의 길이만 사용
-import matplotlib.pyplot as plt
+fish = pd.read_csv("https://bit.ly/fish_csv_data")
+fish_input = fish[["Weight", "Length", "Diagonal", "Height", "Width"]].to_numpy()
+fish_target = fish["Species"].to_numpy()
 
-plt.scatter(perch_length, perch_weight)
-plt.xlabel("length")
-plt.ylabel("weight")
-plt.show()
+# k-최근접 이웃의 다중 분류
+from sklearn.neighbors import KNeighborsClassifier
 
-# 훈련 세트 준비
-from sklearn.model_selection import train_test_split
+kn = KNeighborsClassifier(n_neighbors=3)
+kn.fit(train_scaled, trian_target)
 
-# 훈련 세트와 테스트 세트로 나누자.
-train_input, test_input, train_target, test_target = train_test_split(
-    perch_length, perch_weight, random_state=42
-)
-# 훈련 세트와 테스트 세트를 2차원 배열로 바꾸자.
-train_input = train_input.reshape(-1, 1)
-test_input = test_input.reshape(-1, 1)
+print(kn.classes_)
+print(kn.predict(test_scaled[:5]))
 
-# 회귀 모델 훈련
-from sklearn.neighbors import KNeighborsRegressor
-
-knr = KNeighborsRegressor()
-knr.fit(train_input, train_target)
-
-knr.score(train_input, train_target)
-
-from sklearn.metrics import mean_absolute_error
-
-test_prediction = knr.predict(test_input)
-mae = mean_absolute_error(test_target, test_prediction)
-print(mae)
-
-# 과대적함과 과소적함
-knr.score(train_input, train_target)
-knr.score(test_input, test_target)
-
-# 이웃 개수 줄이기
-# 과대적합 = ↓ 이웃의 개수 ↑ = 과소적합
-knr.n_neighbors = 3
-knr.fit(train_input, train_target)
-
-print(knr.score(train_input, train_target))
-
-print(knr.score(test_input, test_target))
-
-# R^2(score()) = 1 - (타깃-예측)^2의 합 / (타깃 - 평균)^2의 합
-# R^2 = 결정 계수
-
-# print("혼자 공부하는 머신러닝+딥러닝 7강")
-
-# 아주 큰 농어
-print(knr.predict([[50]]))
-
-# 50cm의 농어의 이웃
-
-# 50cm의 농어의 이웃을 구합니다.
-dictances, indexes = knr.kneighbors([[50]])
-
-# 훈련 세트의 산섬도를 그립니다.
-plt.scatter(train_input, train_target)
-# 훈련 세트 중에서 이웃 샘플만 다시 그립니다.
-plt.scatter(train_input[indexes], train_target[indexes], marker="D")
-# 50cm 농어 데이터
-plt.scatter(50, 1033, marker="^")
-plt.show()
-
-# 선형 회귀(linear regression)
-from sklearn.linear_model import LinearRegression
-
-lr = LinearRegression()
-# 선형 회귀 모델 훈련
-lr.fit(train_input, train_target)
-
-# 50cm 농어에 대한 예측
-print(lr.predict([[50]]))
-
-print(lr.coef_, lr.intercept_)
-
-# 학습한 직선 그리기
-
-# 훈련 세트의 산점도를 그립니다.
-plt.scatter(train_input, train_target)
-
-# 15에서 50까지 1차 방적식 그래프를 그립니다.
-plt.plot([15, 50], [15 * lr.coef_ + lr.intercept_, 50 * lr.coef_ + lr.intercept_])
-
-# 50cm 농어 데이터
-plt.scatter(50, 1241.8, marker="^")
-plt.show()
-
-print(lr.score(train_input, train_target))
-
-print(lr.score(test_input, test_target))
-
-# 다항 회귀
-
-train_poly = np.column_stack((train_input**2, train_input))
-test_poly = np.column_stack((test_input**2, test_input))
-
-# 모델 다시 훈련
-lr = LinearRegression()
-lr.fit(train_poly, train_target)
-
-print(lr.predict([[50**2, 50]]))
-
-print(lr.coef_, lr.intercept_)
-
-# 학습한 직선 그리기
-
-# 구간별 직선을 그리기 위해 15에서 49까지 정수 배열을 만듭니다.
-point = np.arange(15, 50)
-
-# 훈련 세트의 산점도를 그립니다.
-plt.scatter(train_input, train_target)
-
-# 15에서 49까지 2차 방정식 그래프를 그립니다.
-plt.plot(point, 1.01 * point**2 - 21.6 * point + 116.05)
-
-# 50cm 농어 데이터
-plt.scatter([50], [1574], marker="^")
-plt.show()
-
-print(lr.score(train_poly, train_target))
-
-print(lr.score(test_poly, test_target))
-
-# print("혼자 공부하는 머신러닝+딥러닝 8강")
-
-# 다중 회귀(multiple regression)
-# 판다스로 데이터 준비
-import pandas as pd
-
-df = pd.read_csv("http://bit.ly/perch_csv")
-perch_full = df.to_numpy()
-
-print(perch_full)
-from sklearn.preprocessing import PolynomialFeatures
-
-# degree=2
-poly = PolynomialFeatures()
-poly.fit([[2, 3]])
-
-# 1(bias), 2, 3, 2**2, 2**3, 3**2
-print(poly.transform([[2, 3]]))
-
-# LinearRegression
-poly = PolynomialFeatures(include_bias=False)
-
-poly.fit(train_input)
-train_poly = poly.transform(train_input)
-
-print(train_poly.shape)
-poly.get_feature_names_out()
-test_poly = poly.transform(test_input)
-
-from sklearn.linear_model import LinearRegression
-
-lr = LinearRegression()
-lr.fit(train_poly, train_target)
-print(lr.score(train_poly, train_target))
-
-print(lr.score(test_poly, test_target))
-
-# 더 많은 특성 만들기
-poly = PolynomialFeatures(degree=5, include_bias=False)
-
-poly.fit(train_input)
-train_poly = poly.transform(train_input)
-train_poly = poly.transform(test_input)
-
-print(train_poly.shape)
-lr.fit(train_poly, train_target)
-
-print(lr.score(train_poly, train_target))
-
-print(lr.score(test_poly, test_target))
-
-# 규제 전에 표준화
-from sklearn.preprocessing import StandardScaler
-
-ss = StandardScaler()
-ss.fit(train_poly)
-train_scaled = ss.transform(train_poly)
-test_scaled = ss.transfrom(test_poly)
-
-# 릿지 회귀
-from sklearn.linear_model import Ridge
-
-ridge = Ridge()
-ridge.fit(train_scaled, train_target)
-
-print(ridge.score(train_scaled, train_target))
-
-print(ridge.score(test_scaled, test_target))
-
-# 적절한 규제 강도 찾기
-train_score = []
-test_score = []
-alpha_list = [0.001, 0.01, 0.1, 1, 10, 100]
-for alpha in alpha_list:
-    # 릿지 모델을 만든다.
-    ridge = Ridge(alpha=alpha)
-    # 릿지 모델을 훈련한다.
-    ridge.fit(train_scaled, train_target)
-    # 훈련 점수와 테스트 점수를 저장한다.
-    train_score.append(ridge.score(train_scaled, train_target))
-    test_score.append(ridge.score(test_scaled, test_target))
-
-plt.plot(np.log10(alpha_list), train_score)
-plt.plot(np.log10(alpha_list), test_score)
-plt.xlabel("alpha")
-plt.ylabel("R^2")
-plt.show()
-
-ridge = Ridge(alpha=0.1)
-ridge.fit(train_scaled, train_target)
-
-print(ridge.score(train_scaled, train_target))
-
-print(ridge.score(test_scaled, test_target))
+proba = kn.predict_proba(test_scaled[:5])
+print(np.round(proba, decimals=4))
