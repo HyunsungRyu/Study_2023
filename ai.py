@@ -1356,25 +1356,40 @@ plt.show()
 
 # print(np.sum(lasso.coef_ == 0))
 """
-[혼자 공부하는 머신러닝+딥러닝] 9강.로지스틱 회귀 알아보기
+[MIT] 데이터 사이언스 기초 강의 
 """
-# 확률 계산하기
-# 길이 높이 대각선 두께
-import pandas as pd
-import numpy as np
 
-fish = pd.read_csv("https://bit.ly/fish_csv_data")
-fish_input = fish[["Weight", "Length", "Diagonal", "Height", "Width"]].to_numpy()
-fish_target = fish["Species"].to_numpy()
 
-# k-최근접 이웃의 다중 분류
-from sklearn.neighbors import KNeighborsClassifier
+# Class Food
+class Food(object):
+    def __init__(self, n, v, w):
+        self.name = n
+        self.value = v
+        self.calories = w
 
-kn = KNeighborsClassifier(n_neighbors=3)
-kn.fit(train_scaled, trian_target)
+    def getValue(self):
+        return self.value
 
-print(kn.classes_)
-print(kn.predict(test_scaled[:5]))
+    def getCost(self):
+        return self.calories
 
-proba = kn.predict_proba(test_scaled[:5])
-print(np.round(proba, decimals=4))
+    def density(self):
+        return self.getValue() / self.getCost()
+
+    def __str__(self):
+        return self.name + ":<" + str(self.value) + "," + str(self.calories) + ">"
+
+    def buildMenu(names, values, calories):
+        """names, values, calories lists of same length.
+        name a list of strings
+        values adn calories lists of numbers
+        returns list fo Foods"""
+        menu = []
+        for i in range(len(values)):
+            menu.append(Food(names[i], values[i], calories))
+        return menu
+
+    def greedy(items, maxCost, keyFunction):
+        """Assumes items a list, maxCost >= 0,
+        keyFunction maps elements of items to numbers"""
+        itemsCopy = sorted(items, key=keyFunction, reverse=True)
