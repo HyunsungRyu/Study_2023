@@ -1358,38 +1358,59 @@ plt.show()
 """
 [MIT] 데이터 사이언스 기초 강의 
 """
+# # Class Food
+# class Food(object):
+#     def __init__(self, n, v, w):
+#         self.name = n
+#         self.value = v
+#         self.calories = w
 
+#     def getValue(self):
+#         return self.value
 
-# Class Food
-class Food(object):
-    def __init__(self, n, v, w):
-        self.name = n
-        self.value = v
-        self.calories = w
+#     def getCost(self):
+#         return self.calories
 
-    def getValue(self):
-        return self.value
+#     def density(self):
+#         return self.getValue() / self.getCost()
 
-    def getCost(self):
-        return self.calories
+#     def __str__(self):
+#         return self.name + ":<" + str(self.value) + "," + str(self.calories) + ">"
 
-    def density(self):
-        return self.getValue() / self.getCost()
+#     def buildMenu(names, values, calories):
+#         """names, values, calories lists of same length.
+#         name a list of strings
+#         values adn calories lists of numbers
+#         returns list fo Foods"""
+#         menu = []
+#         for i in range(len(values)):
+#             menu.append(Food(names[i], values[i], calories))
+#         return menu
 
-    def __str__(self):
-        return self.name + ":<" + str(self.value) + "," + str(self.calories) + ">"
+#     def greedy(items, maxCost, keyFunction):
+#         """Assumes items a list, maxCost >= 0,
+#         keyFunction maps elements of items to numbers"""
+#         itemsCopy = sorted(items, key=keyFunction, reverse=True)
+#         result = []
+#         totalValue, totalCost= 0.0, 0.0
 
-    def buildMenu(names, values, calories):
-        """names, values, calories lists of same length.
-        name a list of strings
-        values adn calories lists of numbers
-        returns list fo Foods"""
-        menu = []
-        for i in range(len(values)):
-            menu.append(Food(names[i], values[i], calories))
-        return menu
+#         for i in range(len(itemsCopy)):
+#             if (totalCost+itemsCopy[i].getCost()) <= maxCost:
+#                 result.append(itemsCopy[i])
+#                 totalCost += itemsCopy[i].getCost()
+#                 totalValue += itemsCopy[i].getCost()
 
-    def greedy(items, maxCost, keyFunction):
-        """Assumes items a list, maxCost >= 0,
-        keyFunction maps elements of items to numbers"""
-        itemsCopy = sorted(items, key=keyFunction, reverse=True)
+#         return (result, totalValue)
+
+#     # Using Greedy
+#     def testGreedy(items, constraint, keyFunction):
+#         taken, val = greedy(items, constraint, keyFunction)
+#         print('Total value of items taken =', val)
+#         for items in taken:
+#             print('   ', items)
+#     def testGreedys(maxUnits):
+#         print('Use greedy by value to allocate', maxUnits, 'calories')
+#         testGreedy(food, maxUnits, )
+"""
+boostcourse 딥러닝 기초 다지기
+"""
