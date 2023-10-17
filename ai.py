@@ -1412,5 +1412,5 @@ plt.show()
 #         print('Use greedy by value to allocate', maxUnits, 'calories')
 #         testGreedy(food, maxUnits, )
 """
-boostcourse 딥러닝 기초 다지기
+fastcampus
 """
