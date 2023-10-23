@@ -1433,4 +1433,107 @@ def GCD(a, b):
 print(GCD(16, 4))
 print(GCD(21, 5))
 print(GCD(25, 5))
+""" """
+class Car:
+    # 필드
+    color = ""
+    speed = 0
+
+    # 생성자
+    def __init__(self):
+        self.color = "하양"
+        self.speed = 100
+
+    # 메서드
+    def infoPrint(self):
+        print(f"색깔 : {self.color}")
+        print(f"속도 : {self.speed}")
+
+    def upSpeed(self, value):
+        self.speed += value
+
+    def downSpeed(self, value):
+        self.speed -= value
+
+    def move():
+        print("부릉부릉~~")
+
+
+# # 객체 생성
+# c1 = Car()
+# c1.color = "빨강"
+# c1.speed = 100
+# c1.upSpeed(20)
+# c1.downSpeed(30)
+# c1.infoPrint()
+# c1.move() 오류
+# Car.move()  # 함수명이 없을 경우, 클래스명.메서드
+# c2 = Car("파랑", 90) # 생성자에 함수 필요
+# c2.infoPrint()
+# c3 = Car()
+# c3.infoPrint()
+""" """
+class Car:
+    # 필드
+    color = ""  # 인스턴스 변수
+    speed = 0  # 인스턴스 변수
+    count = 0  # 클래스 변수
+
+    # 필드에 접근할 때 앞에 self를 붙이면 인스턴스 변수
+    # 클래스명을 붙이면 클래스 변수
+    def __init__(self, color, speed):
+        self.color = color
+        self.speed = speed
+        Car.count += 1
+
+    def infoPrint(self):
+        print(f"색깔 : {self.color}")
+        print(f"속도 : {self.speed}")
+
+
+# 객체 생성
+c1 = Car("빨강", 10)
+c2 = Car("파랑", 100)
+c3 = Car("하양", 40)
+
+c1.infoPrint()
+c2.infoPrint()
+c3.infoPrint()
+print(f"자동차 수량 : {Car.count}")
+""" """
+class Product:
+    def __init__(self, name, price, stock):
+        self.name = name
+        self.price = price
+        self.stock = stock
+
+    def info(self):
+        print(f"상품 이름 : {self.name}\n상품 가격 : {self.price}\n재고 수량 : {self.stock}")
+
+
+socks = Product("양말", 1000, 10)
+books = Product("책", 17500, 15)
+pens = Product("펜", 1200, 25)
+
+books.info()
 """
+
+
+class Member:
+    def __init__(self, name, joindate):
+        self.name = name
+        self.joindate = joindate
+        Member.purchase_list = []
+        Member.purchase_amount = 0
+
+    def info(self):
+        print(f"회원 이름 : {self.name}")
+        print(f"가입 날짜 : {self.joindate}")
+        print(f"구매 내역 : {Member.purchase_list}")
+        print(f"누적 구매금액 : {Member.purchase_amount}")
+
+
+Anna = Member("Anna", "20231020")
+Grace = Member("Grace", "20230505")
+
+Anna.info()
