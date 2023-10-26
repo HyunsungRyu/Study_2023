@@ -1516,9 +1516,7 @@ books = Product("책", 17500, 15)
 pens = Product("펜", 1200, 25)
 
 books.info()
-"""
-
-
+""" """
 class Product:
     def __init__(self, name, price, stock):
         self.name = name
@@ -1566,3 +1564,48 @@ Grace.buy(pen, 3)
 Grace.info()
 
 pen.info()
+"""
+
+
+class Customer_account:
+    name = ""
+    balance = 0
+
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+        print(f"{self.name} 고객님, 계좌를 개설했습니다. 잔고는 {self.balance}원 입니다.\n")
+
+
+class Bank:
+    def __init__(self):
+        self.commission = 0
+
+    def desposit(self, customer, amount):
+        self.commission += 500
+        customer.balance += amount - 500
+        print(f"{customer.name} 고객님, {amount}원 입금되었습니다.")
+        print(f"입금 후 잔고는 {customer.balance}입니다.")
+
+    def withdraw(self, customer, amount):
+        self.commission += 500
+        customer.balance -= amount + 500
+        print(f"{customer.name} 고객님, {amount}원 출금되었습니다.")
+        print(f"출금 후 잔고는 {customer.balance}입니다.")
+
+    def send_money(self, sender, receiver, amount):
+        self.commission += 800
+        sender.balance -= amount + 800
+        receiver.balance += amount
+        print(f"{sender.name} 고객님이 {receiver.name} 고객님께 {amount}원 송금하셨습니다.")
+        print(
+            f"이체 후 잔고는 {sender.name}님은 {sender.balance}원, {receiver.name}님은 {receiver.balance}원 입니다."
+        )
+
+
+ryan = Customer_account("ryan", 50000)
+prodo = Customer_account("prodo", 100000)
+bank_a = Bank()
+bank_a.withdraw(ryan, 15000)
+bank_a.desposit(prodo, 20000)
+bank_a.send_money(prodo, ryan, 25000)
