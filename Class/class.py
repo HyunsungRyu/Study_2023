@@ -1519,21 +1519,50 @@ books.info()
 """
 
 
+class Product:
+    def __init__(self, name, price, stock):
+        self.name = name
+        self.price = price
+        self.stock = stock
+
+    def info(self):
+        print(f"\n상품 이름:{self.name}")
+        print(f"상품 가격:{self.price}")
+        print(f"상품 재고:{self.stock}\n")
+
+
 class Member:
     def __init__(self, name, joindate):
         self.name = name
         self.joindate = joindate
-        Member.purchase_list = []
-        Member.purchase_amount = 0
+        self.purchase_list = []
+        self.purchase_amount = 0
 
     def info(self):
-        print(f"회원 이름 : {self.name}")
+        print(f"\n회원 이름 : {self.name}")
         print(f"가입 날짜 : {self.joindate}")
-        print(f"구매 내역 : {Member.purchase_list}")
-        print(f"누적 구매금액 : {Member.purchase_amount}")
+        print(f"구매 내역 : {self.purchase_list}")
+        print(f"누적 구매금액 : {self.purchase_amount}\n")
+
+    def buy(self, product, count):
+        self.purchase_list.append(product.name)
+        self.purchase_amount += product.price * count
+        product.stock -= count
+        print(f"{self.name} 고객님이 {product.name}을 {count}개 구매하셨습니다.")
 
 
 Anna = Member("Anna", "20231020")
 Grace = Member("Grace", "20230505")
 
 Anna.info()
+
+socks = Product("양말", 1000, 10)
+books = Product("책", 17500, 15)
+pen = Product("펜", 1200, 25)
+
+Anna.buy(socks, 2)
+Anna.info()
+Grace.buy(pen, 3)
+Grace.info()
+
+pen.info()
