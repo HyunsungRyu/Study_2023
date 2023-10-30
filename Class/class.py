@@ -1564,9 +1564,7 @@ Grace.buy(pen, 3)
 Grace.info()
 
 pen.info()
-"""
-
-
+""" """
 class Customer_account:
     name = ""
     balance = 0
@@ -1602,7 +1600,6 @@ class Bank:
             f"이체 후 잔고는 {sender.name}님은 {sender.balance}원, {receiver.name}님은 {receiver.balance}원 입니다."
         )
 
-
 ryan = Customer_account("ryan", 50000)
 prodo = Customer_account("prodo", 100000)
 bank_a = Bank()
@@ -1610,3 +1607,331 @@ bank_a.desposit(ryan, 10000)
 bank_a.send_money(prodo, ryan, 25000)
 bank_a.withdraw(ryan, 30000)
 print(f"수수료는 {bank_a.commission}원 입니다.")
+""" """
+
+
+class Car:
+    speed = 0
+
+    def upSpeed(self, Value):
+        self.speed += Value
+        print(f"현재 속도(부모 클래스) : {self.speed}")
+
+    def downSpeed(self, value):
+        self.speed -= value
+        print(f"현재 속도(부모 클래스) : {self.speed}")
+
+
+# 자식 클래스
+class Sedan(Car):
+    # 메서드 오버라이딩
+    def upSpeed(self, Value):
+        self.speed += Value
+        if self.speed > 150:
+            self.speed = 150
+        print(f"현재 속도(자식 클래스) : {self.speed}")
+
+
+c1 = Sedan()
+c1.upSpeed(200)
+""" """
+
+
+class Superclass:
+    def method(self):
+        raise NotImplementedError
+
+
+class Subclass1(Superclass):
+    def method(self):
+        print("오버라이딩 메서드")
+
+
+class Subclass2(Superclass):
+    pass
+
+
+sub1 = Subclass1()
+sub2 = Subclass2()
+
+sub1.method()
+sub2.method()
+""" """
+import time
+
+# import threading
+import multiprocessing
+
+
+class RacingCar:
+    def __init__(self, name):
+        self.carName = name
+
+    def runCar(self):
+        for i in range(3):
+            carStr = self.carName + "~~달립니다.\n"
+            print(carStr, end="")
+            time.sleep(0.1)  # 0.1초 멈춤
+
+
+if __name__ == "__main__":
+    c1 = RacingCar("1번 차")
+    c2 = RacingCar("2번 차")
+    c3 = RacingCar("3번 차")
+
+    mp1 = multiprocessing.Process(target=c1.runCar)
+    mp2 = multiprocessing.Process(target=c2.runCar)
+    mp3 = multiprocessing.Process(target=c3.runCar)
+
+    mp1.start() 
+    mp2.start()
+    mp3.start()
+
+    mp1.join()
+    mp2.join()
+    mp3.join()
+# th1 = threading.Thread(target=c1.runCar)
+# th2 = threading.Thread(target=c2.runCar)
+# th3 = threading.Thread(target=c3.runCar)
+
+# th1.start()
+# th2.start()
+# th3.start()
+""" """
+# 1)
+from tkinter import *
+
+window = Tk()
+window.mainloop()
+""" """
+# 2)
+from tkinter import *
+
+window = Tk()
+window.title("원도창 연습")
+window.geometry("400x100")
+window.resizable(width=FALSE, height=FALSE)
+
+window.mainloop()
+""" """
+# 3)
+from tkinter import *
+
+window = Tk()
+label1 = Label(window, text="COOKBOOK~~Python을")
+label2 = Label(window, text="열심히", font=("궁서체", 30), fg="blue")
+label3 = Label(window, text="공부 중입니다.", bg="magenta", width=20, height=5, anchor=SE)
+
+label1.pack()
+label2.pack()
+label3.pack()
+
+window.mainloop()
+""" """
+# 4)
+from tkinter import *
+
+window = Tk()
+photo = PhotoImage(file="Class/gif/dog.gif")
+label1 = Label(window, image=photo)
+
+label1.pack()
+
+window.mainloop()
+""" """
+# 5)
+from tkinter import *
+
+window = Tk()
+
+button1 = Button(window, text="파이썬 종료", fg="red", command=quit)
+
+button1.pack()
+window.mainloop()
+""" """
+from tkinter import *
+from tkinter import messagebox
+
+
+## 함수 선언 부분 ##
+def myFunc():
+    messagebox.showinfo("강아지 버튼 ", "강아지가 귀엽죠?^^")
+
+
+## 메인 코드 부분 ##
+
+# window = Tk()
+
+# photo = PhotoImage(file="C:\git_files\Study\Class\GIF\dog2.gif")
+# button1 = Button(window, image=photo, command=myFunc)
+
+# button1.pack()
+
+# window.mainloop()
+""" """
+# 6)
+from tkinter import *
+from tkinter import messagebox
+
+window = Tk()
+
+
+## 함수 선언 부분 ##
+def myFunc():
+    if chk.get() == 0:
+        messagebox.showinfo("", "체크버튼이 꺼졌어요.")
+    else:
+        messagebox.showinfo("", "체크버튼이 켜졌어요.")
+
+
+## 메인 코드 부분 ##
+chk = IntVar()
+cb1 = Checkbutton(window, text="클릭하세요", variable=chk, command=myFunc)
+
+cb1.pack()
+
+window.mainloop()
+""" """
+# 7)
+from tkinter import *
+
+window = Tk()
+
+
+## 함수 선언 부분 ##
+def myFunc():
+    if var.get() == 1:
+        label1.configure(text="파이썬")
+    elif var.get() == 2:
+        label1.configure(text="C++")
+    else:
+        label1.configure(text="Java")
+
+
+## 메인 코드 부분 ##
+var = IntVar()
+rb1 = Radiobutton(window, text="파이썬", variable=var, value=1, command=myFunc)
+rb2 = Radiobutton(window, text="C++", variable=var, value=2, command=myFunc)
+rb3 = Radiobutton(window, text="Java", variable=var, value=3, command=myFunc)
+label1 = Label(window, text="선택한 언어", fg="red")
+
+rb1.pack()
+rb2.pack()
+rb3.pack()
+label1.pack()
+
+window.mainloop()
+
+""" """
+# 8)
+from tkinter import *
+
+window = Tk()
+
+button1 = Button(window, text="버튼1")
+button2 = Button(window, text="버튼2")
+button3 = Button(window, text="버튼3")
+
+button1.pack(side=LEFT)
+button2.pack(side=LEFT)
+button3.pack(side=LEFT)
+
+window.mainloop()
+""" """
+from tkinter import *
+
+window = Tk()
+btnList = [None] * 3
+
+for i in range(0, 3):
+    btnList[i] = Button(window, text="버튼" + str(i + 1))
+for btn in btnList:
+    btn.pack(side=RIGHT)
+    # # 9)
+    # btn.pack(side=TOP)
+    # # btn.pack(side=BOTTOM)
+    # # 10)
+    # btn.pack(side=TOP, fill = X)
+    # # 11)
+    # btn.pack(side=TOP, fill = X, padx = 10, pady = 10)
+    # # 12)
+    # btn.pack(side=TOP, fill = X, ipadx = 10, ipady = 10)
+
+window.mainloop()
+""" """
+# 13)
+from tkinter import *
+
+btnList = [None] * 9
+fnameList = [
+    "C:\git_files\Study\Class\GIF\froyo.gif",
+    "C:\git_files\Study\Class\GIF\gingerbread.gif",
+    "C:\git_files\Study\Class\GIF\honeycomb.gif",
+    "C:\git_files\Study\Class\GIF\icecream.gif",
+    "C:\git_files\Study\Class\GIF\jellybean.gif",
+    "C:\git_files\Study\Class\GIF\kitkat.gif",
+    "C:\git_files\Study\Class\GIF\lollipop.gif",
+    "C:\git_files\Study\Class\GIF\marshmallow.gif",
+    "C:\git_files\Study\Class\GIF\nougat.gif",
+]
+
+nameList = [
+    "froyo.gif",
+    "gingerbread.gif",
+    "honeycomb.gif",
+    "icecream.gif",
+    "jellybean.gif",
+    "kitkat.gif",
+    "lollipop.gif",
+    "marshmallow.gif",
+    "nougat.gif",
+]
+
+photoList = [None] * 9
+i, k = 0, 0
+num = 0
+xPos, yPos = 0, 0
+
+## main ##
+window = Tk()
+window.geometry("210x210")
+
+for i in range(0, 9):
+    photoList[i] = PhotoImage(file="C:\git_files\Study\Class\GIF\\" + nameList[i])
+    btnList[i] = Button(window, image=photoList[i])
+for i in range(0, 3):
+    for k in range(0, 3):
+        btnList[num].place(x=xPos, y=yPos)
+        num += 1
+        xPos += 70
+
+    xPos = 0
+    yPos += 70
+
+window.mainloop()
+"""
+# 14)
+from tkinter import *
+from time import *
+
+fnameList = [
+    "jeju1.gif",
+    "jeju2.gif",
+    "jeju3.gif",
+    "jeju4.gif",
+    "jeju5.gif",
+    "jeju6.gif",
+    "jeju7.gif",
+    "jeju8.gif",
+    "jeju9.gif",
+]
+photoList = [None] * 9
+num = 0
+
+
+def clickNext():
+    global num
+    num += 1
+    if num > 8:
+        num = 0
+    photo = photoImage(file="C:\git_files\Study\Class\GIF\\")
