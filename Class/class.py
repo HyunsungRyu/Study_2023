@@ -1953,7 +1953,7 @@ window = Tk()
 window.geometry("700x500")
 window.title("사진 앨범 보기")
 
-btnPrev = Button(window, text="<<이전", command=clickPrev)
+btnPrev = Button(window, text="<< 이전", command=clickPrev)
 btnNext = Button(window, text="다음 >>", command=clickNext)
 
 photo = PhotoImage(file="Class/GIF/" + fnameList[0])
