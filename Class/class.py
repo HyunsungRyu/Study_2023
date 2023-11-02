@@ -1909,7 +1909,7 @@ for i in range(0, 3):
     yPos += 70
 
 window.mainloop()
-"""
+""" """
 # 14)
 from tkinter import *
 from time import *
@@ -1934,4 +1934,34 @@ def clickNext():
     num += 1
     if num > 8:
         num = 0
-    photo = photoImage(file="C:\git_files\Study\Class\GIF\\")
+    photo = PhotoImage(file="Class/GIF/" + fnameList[num])
+    pLabel.configure(image=photo)
+    pLabel.image = photo
+
+
+def clickPrev():
+    global num
+    num -= 1
+    if num < 0:
+        num = 8
+    photo = PhotoImage(file="Class/GIF/" + fnameList[num])
+    pLabel.configure(image=photo)
+    pLabel.image = photo
+
+
+window = Tk()
+window.geometry("700x500")
+window.title("사진 앨범 보기")
+
+btnPrev = Button(window, text="<<이전", command=clickPrev)
+btnNext = Button(window, text="다음 >>", command=clickNext)
+
+photo = PhotoImage(file="Class/GIF/" + fnameList[0])
+pLabel = Label(window, image=photo)
+
+btnPrev.place(x=250, y=10)
+btnNext.place(x=400, y=10)
+pLabel.place(x=15, y=50)
+
+window.mainloop()
+"""
