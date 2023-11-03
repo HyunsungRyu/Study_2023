@@ -1964,4 +1964,77 @@ btnNext.place(x=400, y=10)
 pLabel.place(x=15, y=50)
 
 window.mainloop()
+""" """
+# 1)
+inFp = None
+inStr = ""
+
+inFp = open("C:/Temp/pyclassinputoutput.txt", "r", encoding="utf-8")
+
+inStr = inFp.readline()
+print(inStr, end="")
+
+inStr = inFp.readline()
+print(inStr, end="")
+
+inStr = inFp.readline()
+print(inStr, end="")
+
+inFp.close()
+""" """
+# 2)
+inFp = None
+inStr = ""
+
+inFp = open("C:/Temp/pyclassinputoutput.txt", "r", encoding="utf-8")
+
+while True:
+    inStr = inFp.readline()
+    if inStr == "":
+        break
+    print(inStr, end="")
+
+inFp.close()
+""" """
+# 3)
+inFp = None
+inList = ""
+
+inFp = open("C:/Temp/pyclassinputoutput.txt", "r", encoding="utf-8")
+inList = inFp.readlines()
+print(inList)
+
+inFp.close()
+"""
+# 4)
+inFp = NoneinList, inStr = [], ""
+inList, inStr = [], ""
+
+inFp = open("C:/Temp/pyclassinputoutput.txt", "r", encoding="utf-8")
+
+inList = inFp.readlines()
+for inStr in inList:
+    print(inStr, end="")
+inFp.close()
+"""
+
+# 19)
+from tkinter import *
+
+window = Tk()
+
+mainMenu = Menu(window)
+window.config(menu=mainMenu)
+
+fileMenu = Menu(mainMenu)
+mainMenu.add_cascade(label="파일", menu=fileMenu)
+fileMenu.add_command(label="열기")
+fileMenu.add_separator()
+fileMenu.add_command(label="종료")
+
+window.mainloop()
+
+""" """
+from tkinter import *
+from tkinter import messagebox
 """
