@@ -2005,7 +2005,7 @@ inList = inFp.readlines()
 print(inList)
 
 inFp.close()
-"""
+""" """
 # 4)
 inFp = NoneinList, inStr = [], ""
 inList, inStr = [], ""
@@ -2016,7 +2016,21 @@ inList = inFp.readlines()
 for inStr in inList:
     print(inStr, end="")
 inFp.close()
-"""
+""" """
+outFp = None
+outStr = ""
+
+outFp = open("C:/Temp/pyclassinputoutput.txt", "r", encoding="utf-8")
+
+while True:
+    outStr = input("내용 입력 : ")
+    if outStr != "":
+        outFp.writelines(outStr + "\n")
+    else:
+        break
+outFp.close()
+print("---정상적으로 파일에 씀---)
+""" """
 
 # 19)
 from tkinter import *
@@ -2035,6 +2049,94 @@ fileMenu.add_command(label="종료")
 window.mainloop()
 
 """ """
+# 20)
 from tkinter import *
 from tkinter import messagebox
+
+
+def func_open():
+    messagebox.showinfo("메뉴선택", "열기 메뉴를 선택함")
+
+
+def func_exit():
+    window.quit()
+    window.destroy()
+
+
+window = Tk()
+
+mainMenu = Menu(window)
+window.config(menu=mainMenu)
+fileMenu = Menu(mainMenu)
+mainMenu.add_cascade(label="파일", menu=fileMenu)
+fileMenu.add_command(label="열기", command=func_open)
+fileMenu.add_separator()
+fileMenu.add_command(label="종료", command=func_exit)
+window.mainloop()
+""" """
+# 21)
+from tkinter import *
+from tkinter.simpledialog import *
+
+window = Tk()
+window.geometry("400x100")
+
+label1 = Label(window, text="입력된 값")
+label1.pack()
+
+value = askinteger("확대배수", "주사위 숫자(1~6)을 입력하세요", minvalue=1, maxvalue=6)
+label1.configure(text=str(value))
+window.mainloop()
+""" """
+from tkinter import *
+from tkinter.filedialog import *
+
+window = Tk()
+window.geometry("400x100")
+
+label1 = Label(window, text="선택된 파일 이름")
+
+filename = askopenfilename(
+    parent=window, filetypes=(("GIF 파일", "*.gif"), ("모든 파일", "*.*"))
+)
+
+label1.configure(text=str(filename))
+
+window.mainloop()
+""" """
+from tkinter import *
+from tkinter.filedialog import *
+
+
+def func_open():
+    filename = askopenfilename(
+        parent=window, filetypes=(("GIF 파일", "*.gif"), ("모든 파일", "*.*"))
+    )
+    photo = PhotoImage(file=filename)
+    pLabel.configure(image=photo)
+    pLabel.image = photo
+
+
+def func_exit():
+    window.quit()
+    window.destroy()
+
+
+window = Tk()
+window.geometry("400x400")
+window.title("명화 감상하기")
+
+photo = PhotoImage()
+pLabel = Label(window, image=photo)
+pLabel.pack(expand=1, anchor=CENTER)
+
+mainMenu = Menu(window)
+window.config(menu=mainMenu)
+fileMenu = Menu(mainMenu)
+mainMenu.add_cascade(label="파일", menu=fileMenu)
+fileMenu.add_command(label="파일 열기", command=func_open)
+fileMenu.add_separator()
+fileMenu.add_command(label="프로그램 종료", command=func_exit)
+
+window.mainloop()
 """
