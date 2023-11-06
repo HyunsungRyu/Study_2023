@@ -85,7 +85,8 @@ Word = soup.select_one("#menu > ul > li.m1.first.on > a > span.tx")
 
 # 텍스트 요소만 출력
 print(Word)
-"""
+""" """
+# 뉴스제목
 import requests
 from bs4 import BeautifulSoup
 
@@ -100,3 +101,61 @@ for link in links:
     title = link.text  # 태그 안에 텍스트요소를 가져온다
     url = link.attrs["href"]  # href의 속성값을 가져온다
     print(title, url)
+""" """
+# 검색어 변경하기 01
+import requests
+from bs4 import BeautifulSoup
+
+keyword = input("검색어를 입력하세요>>>")
+response = requests.get(
+    "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=" + keyword
+)
+html = response.text
+soup = BeautifulSoup(html, "html.parser")
+links = soup.select(".news_tit")  # 결과는 리스트
+
+for link in links:
+    title = link.text  # 태그 안에 텍스트요소를 가져온다
+    url = link.attrs["href"]  # href의 속성값을 가져온다
+    print(title, url)
+""" """
+# 검색어 변경하기 02
+import requests
+from bs4 import BeautifulSoup
+import pyautogui
+
+keyword = pyautogui.prompt("검색어를 입력하세요.")
+response = requests.get(
+    f"https://search.naver.com/search.naver?where=news&sm=tab_jum&query={keyword}"
+)
+html = response.text
+soup = BeautifulSoup(html, "html.parser")
+links = soup.select(".news_tit")  # 결과는 리스트
+
+for link in links:
+    title = link.text  # 태그 안에 텍스트요소를 가져온다
+    url = link.attrs["href"]  # href의 속성값을 가져온다
+    print(title, url)
+"""
+# 여러페이지 가저오기
+import requests
+from bs4 import BeautifulSoup
+import pyautogui
+
+keyword = pyautogui.prompt("검색어를 입력하세요.")
+lastpage = pyautogui.prompt("마지막 페이지번호를 입력해주세요")
+pageNum = 1
+for i in range(1, int(lastpage) * 10, 10):
+    print(f"\n{pageNum}페이지입니다.\n")
+    response = requests.get(
+        f"https://search.naver.com/search.naver?where=news&sm=tab_jum&query={keyword}&start={i}"
+    )
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
+    links = soup.select(".news_tit")  # 결과는 리스트
+
+    for link in links:
+        title = link.text  # 태그 안에 텍스트요소를 가져온다
+        url = link.attrs["href"]  # href의 속성값을 가져온다
+        print(title, url)
+    pageNum = pageNum + 1
