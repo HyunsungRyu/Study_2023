@@ -1,5 +1,0 @@
-package_version(R.version)
-install.packages('forecast')
-install.packages('TSA')
-library(forecast)
-library(TSA)
