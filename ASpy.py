@@ -136,7 +136,7 @@ for link in links:
     title = link.text  # 태그 안에 텍스트요소를 가져온다
     url = link.attrs["href"]  # href의 속성값을 가져온다
     print(title, url)
-"""
+""" """
 # 여러페이지 가저오기
 import requests
 from bs4 import BeautifulSoup
@@ -159,3 +159,80 @@ for i in range(1, int(lastpage) * 10, 10):
         url = link.attrs["href"]  # href의 속성값을 가져온다
         print(title, url)
     pageNum = pageNum + 1
+""" """
+# 1, 데이터 추출
+import requests
+from bs4 import BeautifulSoup
+
+# 종목 리스트
+codes = ["005930", "000660", "035720"]
+
+for code in codes:
+    url = f"https://finance.naver.com/item/sise.naver?code={code}"
+    response = requests.get(url)
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
+    price = soup.select_one("#_nowVal").text
+    price = price.replace(",", "")
+    print(price)
+
+""" """
+import requests
+from bs4 import BeautifulSoup
+import openpyxl
+
+fpath = r"C:\git_files\Study\data.xlsx"
+
+wb = openpyxl.Workbook()
+codes = ["005930", "000660", "035720"]
+ws = wb.create_sheet("stock")
+
+i = 2
+for code in codes:
+    url = f"https://finance.naver.com/item/sise.naver?code={code}"
+    response = requests.get(url)
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
+    name = soup.select_one("#middle > div.h_company > div.wrap_company > h2 > a").text
+    ws[f"A{i}"] = name
+    price = soup.select_one("#_nowVal").text
+    price = price.replace(",", "")
+    ws[f"B{i}"] = price
+    i += 1
+
+wb.save(fpath)
+""" """
+# 파이썬 엑셀 다루기
+import openpyxl
+
+# 1) 엑셀 만들기
+wb = openpyxl.Workbook()
+# 2) 엑셀 워크시트 만들기
+ws = wb.create_sheet("오징어게임")
+# 3) 데이터 추가하기
+ws["A1"] = "참가번호"
+ws["B1"] = "성명"
+
+ws["A2"] = 1
+ws["B2"] = "오일남"
+
+# 4) 엑셀 저장하기
+wb.save("C:\git_files\Study\data.xlsx")
+""" """
+import openpyxl
+
+fpath = r"C:\git_files\Study\data.xlsx"
+
+# 1) 엑셀 만들기
+wb = openpyxl.load_workbook(fpath)
+
+# 2) 엑셀 시트 선택
+ws = wb["오징어게임"]
+
+# 3) 데이터 수정하기
+ws["A3"] = 456
+ws["B3"] = "성기훈"
+
+# 4) 엑셀 저장하기
+wb.save(fpath)
+"""
