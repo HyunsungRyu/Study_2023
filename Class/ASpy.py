@@ -236,3 +236,44 @@ ws["B3"] = "성기훈"
 # 4) 엑셀 저장하기
 wb.save(fpath)
 """
+# 쿠팡 웹 크롤링
+import requests
+from bs4 import BeautifulSoup
+
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+    "Accept-Language": "ko-KR,ko;q=0.8,en-US;q=0.5,en;q=0.3",
+}
+main_url = "https://www.coupang.com/np/search?rocketAll=false&searchId=d0f2d44aef82434ba6bf5356b6d9875c&q=%EA%B2%8C%EC%9D%B4%EB%B0%8D%EB%A7%88%EC%9A%B0%EC%8A%A4&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&searchProductCount=131227&component=&rating=0&sorter=scoreDesc&listSize=36"
+
+# 헤더에 User-Agent를 추가하지 않으면 오류가 남(멈춰버림)
+response = requests.get(main_url, headers=headers)
+html = response.text
+soup = BeautifulSoup(html, "html.parser")
+links = soup.select("a.search-product-link")  # select의 결과는 리스트 자료형
+print(links)
+for link in links:
+    sub_url = "https://www.coupang.com/" + link.attrs["href"]
+
+    response = requests.get(sub_url, headers=headers)
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
+
+    # 브랜드명은 있을 수도 있고, 없을 수도 있음
+    # 중고상품의 경우 태그가 달라짐
+    # try-except로 예외 처리
+
+    try:
+        brand_name = soup.select_one("a.prod-brand-name").text
+    except:
+        brand_name = ""
+
+    brand_name = soup.select_one("a.prod-brand-name").text
+
+    # 상품명
+    product_name = soup.select_one("h2.prod-buy-header__title").text
+
+    # 가격
+    product_price = soup.select_one("span.total-price > strong").text
+
+    print(brand_name, product_name, product_price)
