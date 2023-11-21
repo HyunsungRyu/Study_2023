@@ -281,7 +281,7 @@ for link in links:
     product_price = soup.select_one("span.total-price > strong").text
 
     print(brand_name, product_name, product_price)
-""" """
+"""
 import requests
 from bs4 import BeautifulSoup
 import pyautogui
@@ -391,3 +391,4 @@ for page in range(1, 5):
             if rank > 100:
                 done = True
                 break
+"""
